@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大连市第二十四中学信息社团 | Dalian No.24 High School IT Club</title>
+    <!-- 增加网页图标：同目录下的 logo.png -->
+    <link rel="icon" href="logo.jpg" type="image/png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', 'Segoe UI', Roboto, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #0f2027;
+            background: linear-gradient(to right, #203a43, #0f2027);
+            color: white;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-container h1 {
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .logo-container p {
+            font-size: 0.8rem;
+            color: #4facfe;
+            margin-top: 3px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #4facfe;
+        }
+
+        .hero {
+            height: 70vh;
+            background: linear-gradient(rgba(15, 32, 39, 0.8), rgba(32, 58, 67, 0.8)), url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            color: #e0e0e0;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            background-color: #4facfe;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            background-color: #00f2fe;
+        }
+
+        .features-section {
+            padding: 80px 5%;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            color: #203a43;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 50%;
+            height: 3px;
+            background-color: #4facfe;
+            position: absolute;
+            bottom: -10px;
+            left: 25%;
+            border-radius: 2px;
+        }
+
+        .cards-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background-color: white;
+            width: 300px;
+            padding: 30px 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            color: #4facfe;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #203a43;
+        }
+
+        .card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        footer {
+            background-color: #0f2027;
+            color: #a0a0a0;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+            nav ul {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            nav ul li {
+                margin: 5px 10px;
+            }
+            .hero h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <h1>大连市第二十四中学信息社团</h1>
+            <p>IT Club of Dalian No.24 High School</p>
+        </div>
+        <nav>
+            <ul>
+                <!-- 导航链接全部指向同目录下的对应 .html 文件 -->
+                <li><a href="home.html">首页 Home</a></li>
+                <li><a href="info.html">关于我们 About Us</a></li>
+                <li><a href="act.html">社团活动 Activities</a></li>
+                <li><a href="honors.html">竞赛荣誉 Honors</a></li>
+                <li><a href="contact.html">加入我们 Join Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h2>探索代码世界，创造无限未来</h2>
+        <p>Explore the world of code, create an infinite future. 在这里，与热爱科技的同学们一起碰撞思维的火花。</p>
+        <a href="contact.html" class="btn">即刻加入我们</a>
+    </section>
+
+    <section class="features-section">
+        <h2 class="section-title">我们的主要活动</h2>
+        <div class="cards-container">
+            <div class="card">
+                <div class="card-icon">💻</div>
+                <h3>算法与编程</h3>
+                <p>学习 C++、Python 等主流编程语言。我们定期举办算法讲座，备战信息学奥林匹克竞赛 (CSP/NOIP)。</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🌐</div>
+                <h3>Web 极客开发</h3>
+                <p>从 HTML/CSS 到前端框架，掌握构建现代网站的技术。动手打造属于你自己的互联网应用。</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🤖</div>
+                <h3>人工智能探索</h3>
+                <p>接触机器学习基础，探讨 AI 在未来的应用，拓展科技视野，培养解决实际问题的能力。</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 大连市第二十四中学信息社团 (IT Club of Dalian No.24 High School). All Rights Reserved.</p>
+           </footer>
+
+</body>
+</html>

@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>大连市第二十四中学信息社团 | Dalian No.24 High School IT Club</title>
-    <!-- 增加网页图标：同目录下的 logo.png -->
+    <title>关于我们 | 大连市第二十四中学信息社团</title>
     <link rel="icon" href="logo.jpg" type="image/png">
     <style>
         * {
@@ -66,57 +65,41 @@
             color: #4facfe;
         }
 
-        .hero {
-            height: 70vh;
+        /* 内页横幅 - 与主页hero风格一致但更紧凑 */
+        .page-banner {
             background: linear-gradient(rgba(15, 32, 39, 0.8), rgba(32, 58, 67, 0.8)), url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center/cover;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            padding: 60px 5%;
             text-align: center;
             color: white;
-            padding: 0 20px;
         }
 
-        .hero h2 {
-            font-size: 3rem;
-            margin-bottom: 15px;
+        .page-banner h2 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
-        .hero p {
+        .page-banner p {
             font-size: 1.2rem;
-            margin-bottom: 30px;
-            max-width: 600px;
+            max-width: 700px;
+            margin: 0 auto;
             color: #e0e0e0;
         }
 
-        .btn {
-            padding: 12px 30px;
-            background-color: #4facfe;
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-            box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 5%;
         }
 
-        .btn:hover {
-            transform: translateY(-3px);
-            background-color: #00f2fe;
-        }
-
-        .features-section {
-            padding: 80px 5%;
-            text-align: center;
+        .about-section {
+            margin-bottom: 50px;
         }
 
         .section-title {
             font-size: 2rem;
-            margin-bottom: 40px;
             color: #203a43;
+            margin-bottom: 20px;
             position: relative;
             display: inline-block;
         }
@@ -127,47 +110,147 @@
             height: 3px;
             background-color: #4facfe;
             position: absolute;
-            bottom: -10px;
-            left: 25%;
+            bottom: -8px;
+            left: 0;
             border-radius: 2px;
         }
 
-        .cards-container {
+        .about-grid {
             display: flex;
-            justify-content: center;
-            gap: 30px;
+            gap: 40px;
             flex-wrap: wrap;
+            margin-top: 30px;
         }
 
-        .card {
-            background-color: white;
-            width: 300px;
-            padding: 30px 20px;
+        .about-text {
+            flex: 2;
+            min-width: 280px;
+        }
+
+        .about-text p {
+            margin-bottom: 18px;
+            font-size: 1.05rem;
+            color: #444;
+        }
+
+        .about-text strong {
+            color: #0f2027;
+        }
+
+        .about-highlight {
+            flex: 1;
+            min-width: 240px;
+            background: white;
+            padding: 30px 25px;
             border-radius: 12px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-left: 4px solid #4facfe;
+        }
+
+        .about-highlight h3 {
+            font-size: 1.3rem;
+            color: #203a43;
+            margin-bottom: 15px;
+        }
+
+        .about-highlight ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .about-highlight ul li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .about-highlight ul li:last-child {
+            border-bottom: none;
+        }
+
+        .about-highlight ul li span {
+            font-size: 1.4rem;
+        }
+
+        /* 核心团队 - 指导老师单独一行，社长副社长一行 */
+        .team-section {
+            margin-top: 10px;
+        }
+
+        .team-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .team-card {
+            background: white;
+            width: 200px;
+            padding: 25px 15px 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        .team-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.08);
         }
 
-        .card-icon {
-            font-size: 3rem;
-            color: #4facfe;
-            margin-bottom: 15px;
+        .team-avatar {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            display: block;
         }
 
-        .card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
+        .team-card h4 {
+            font-size: 1.1rem;
             color: #203a43;
         }
 
-        .card p {
-            color: #666;
+        .team-card p {
+            font-size: 0.9rem;
+            color: #777;
+            margin-top: 4px;
+        }
+
+        .values-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .value-item {
+            background: white;
+            flex: 1 1 180px;
+            padding: 20px 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            text-align: center;
+            border: 1px solid #f0f0f0;
+        }
+
+        .value-item .icon {
+            font-size: 2.4rem;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .value-item h4 {
+            font-size: 1.1rem;
+            color: #203a43;
+        }
+
+        .value-item p {
             font-size: 0.95rem;
+            color: #666;
+            margin-top: 5px;
         }
 
         footer {
@@ -176,6 +259,7 @@
             text-align: center;
             padding: 20px 0;
             font-size: 0.9rem;
+            margin-top: 30px;
         }
 
         @media (max-width: 768px) {
@@ -191,8 +275,14 @@
             nav ul li {
                 margin: 5px 10px;
             }
-            .hero h2 {
-                font-size: 2rem;
+            .page-banner h2 {
+                font-size: 2.2rem;
+            }
+            .about-grid {
+                flex-direction: column;
+            }
+            .team-card {
+                width: 160px;
             }
         }
     </style>
@@ -206,7 +296,6 @@
         </div>
         <nav>
             <ul>
-                <!-- 导航链接全部指向同目录下的对应 .html 文件 -->
                 <li><a href="home.html">首页 Home</a></li>
                 <li><a href="info.html">关于我们 About Us</a></li>
                 <li><a href="act.html">社团活动 Activities</a></li>
@@ -216,36 +305,118 @@
         </nav>
     </header>
 
-    <section class="hero">
-        <h2>探索代码世界，创造无限未来</h2>
-        <p>Explore the world of code, create an infinite future. 在这里，与热爱科技的同学们一起碰撞思维的火花。</p>
-        <a href="contact.html" class="btn">即刻加入我们</a>
+    <section class="page-banner">
+        <h2>关于我们</h2>
+        <p>了解大连市第二十四中学信息社团 — 一群热爱科技、追求卓越的少年</p>
     </section>
 
-    <section class="features-section">
-        <h2 class="section-title">我们的主要活动</h2>
-        <div class="cards-container">
-            <div class="card">
-                <div class="card-icon">💻</div>
-                <h3>算法与编程</h3>
-                <p>学习 C++、Python 等主流编程语言。我们定期举办算法讲座，备战信息学奥林匹克竞赛 (CSP/NOIP)。</p>
-            </div>
-            <div class="card">
-                <div class="card-icon">🌐</div>
-                <h3>Web 极客开发</h3>
-                <p>从 HTML/CSS 到前端框架，掌握构建现代网站的技术。动手打造属于你自己的互联网应用。</p>
-            </div>
-            <div class="card">
-                <div class="card-icon">🤖</div>
-                <h3>人工智能探索</h3>
-                <p>接触机器学习基础，探讨 AI 在未来的应用，拓展科技视野，培养解决实际问题的能力。</p>
+    <div class="about-content">
+        <!-- 社团概况 -->
+        <div class="about-section">
+            <h3 class="section-title">社团概况</h3>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p><strong>大连市第二十四中学信息社团</strong> 成立于2025年，是校内最具活力的科技类社团之一。我们汇聚了来自各年级对计算机科学、信息技术、人工智能等领域充满热情的同学。</p>
+                    <p>依托于24OI，社团致力于为成员提供学习前沿技术、参与竞赛实践、孵化创意项目的平台。无论是零基础的初学者，还是已有经验的“小极客”，都能在这里找到属于自己的成长路径。</p>
+                    <p>多年来，社团成员在信息学奥林匹克竞赛（NOIP/CSP）等赛事中屡获佳绩。</p>
+                </div>
+                <div class="about-highlight">
+                    <h3>📌 社团速览</h3>
+                    <ul>
+                        <li><span>📅</span> 成立时间：2025年</li>
+                        <li><span>👥</span> 在册社员：30+</li>
+                        <li><span>💡</span> 每周活动：1节社团课（周五下午）</li>
+                        <li><span>🌐</span> 指导老师：信息竞赛教练周亚娟老师</li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </section>
+
+        <!-- 我们的价值观 -->
+        <div class="about-section">
+            <h3 class="section-title">价值观</h3>
+            <div class="values-list">
+                <div class="value-item">
+                    <span class="icon">🚀</span>
+                    <h4>探索精神</h4>
+                    <p>保持好奇，主动探究技术背后的原理，不满足于表面。</p>
+                </div>
+                <div class="value-item">
+                    <span class="icon">💡</span>
+                    <h4>创新实践</h4>
+                    <p>将想法转化为代码与项目，用技术解决真实问题。</p>
+                </div>
+                <div class="value-item">
+                    <span class="icon">🤝</span>
+                    <h4>协作分享</h4>
+                    <p>互助共进，在交流中碰撞火花，共同成长。</p>
+                </div>
+                <div class="value-item">
+                    <span class="icon">🏅</span>
+                    <h4>追求卓越</h4>
+                    <p>以高标准要求自己，在竞赛与项目中不断突破。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 核心团队：指导老师单独一行，社长/副社长一行 -->
+        <div class="about-section team-section">
+            <h3 class="section-title">核心团队</h3>
+            
+            <!-- 指导老师单独一行 -->
+            <div class="team-row">
+                <div class="team-card">
+                    <span class="team-avatar">🧑‍🏫</span>
+                    <h4>周亚娟老师</h4>
+                    <p>社团指导老师 / 信息学竞赛教练</p>
+                </div>
+            </div>
+
+            <!-- 社长/副社长 一行横排 -->
+            <div class="team-row">
+                <div class="team-card">
+                    <span class="team-avatar">🧑‍💻</span>
+                    <h4>2.9 牟昱德（MYD）</h4>
+                    <p>社长 / 社团创始人</p>
+                </div>
+                <div class="team-card">
+                    <span class="team-avatar">🧑‍💻</span>
+                    <h4>2.1 雷一鸣</h4>
+                    <p>副社长 / NOIP省一获得者</p>
+                </div>
+                <div class="team-card">
+                    <span class="team-avatar">👩‍💻</span>
+                    <h4>2.8 裴月邻</h4>
+                    <p>副社长</p>
+                </div>
+            </div>
+
+            <p style="text-align: center; margin-top: 20px; color: #777; font-size: 0.95rem;">（以上为部分核心成员，更多优秀社员未逐一列出）</p>
+        </div>
+
+        <!-- 发展历程 / 里程碑 -->
+        <div class="about-section">
+            <h3 class="section-title">发展里程碑</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 15px;">
+                <div style="flex: 1; min-width: 180px; background: white; padding: 18px 20px; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.03); border-left: 4px solid #4facfe;">
+                    <span style="font-weight: 700; color: #0f2027;">2025.10</span>
+                    <p style="margin-top: 5px; color: #555;">社团正式成立，首批成员15人</p>
+                </div>
+                <div style="flex: 1; min-width: 180px; background: white; padding: 18px 20px; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.03); border-left: 4px solid #4facfe;">
+                    <span style="font-weight: 700; color: #0f2027;">2025.11</span>
+                    <p style="margin-top: 5px; color: #555;">我社成员在NOIP 2025中斩获佳绩</p>
+                </div>
+                <div style="flex: 1; min-width: 180px; background: white; padding: 18px 20px; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.03); border-left: 4px solid #4facfe;">
+                    <span style="font-weight: 700; color: #0f2027;">2026.7</span>
+                    <p style="margin-top: 5px; color: #555;">我社成员在NOI 2026中斩获铜牌</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <footer>
-        <p>&copy; 2026 大连市第二十四中学信息社团 (IT Club of Dalian No.24 High School). All Rights Reserved.</p>
-           </footer>
+        <p>&copy; 2026 大连市第二十四中学信息社团 (Information Club of Dalian No.24 High School). All Rights Reserved.</p>
+    </footer>
 
 </body>
 </html>

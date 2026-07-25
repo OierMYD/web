@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>加入我们 | 大连市第二十四中学信息社团</title>
+    <link rel="icon" href="logo.jpg" type="image/png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', 'Segoe UI', Roboto, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #0f2027;
+            background: linear-gradient(to right, #203a43, #0f2027);
+            color: white;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-container h1 {
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .logo-container p {
+            font-size: 0.8rem;
+            color: #4facfe;
+            margin-top: 3px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #4facfe;
+        }
+
+        /* 内页横幅 */
+        .page-banner {
+            background: linear-gradient(rgba(15, 32, 39, 0.8), rgba(32, 58, 67, 0.8)), url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center/cover;
+            padding: 60px 5%;
+            text-align: center;
+            color: white;
+        }
+
+        .page-banner h2 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .page-banner p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: #e0e0e0;
+        }
+
+        .contact-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 50px 5% 60px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #203a43;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 50%;
+            height: 3px;
+            background-color: #4facfe;
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            border-radius: 2px;
+        }
+
+        .contact-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px 50px;
+            margin-top: 20px;
+        }
+
+        .contact-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+            padding: 30px 25px 25px;
+            text-align: center;
+            width: 240px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+        }
+
+        .contact-card .avatar {
+            font-size: 3.6rem;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .contact-card h3 {
+            font-size: 1.2rem;
+            color: #203a43;
+            margin-bottom: 2px;
+        }
+
+        .contact-card .role {
+            font-size: 0.9rem;
+            color: #4facfe;
+            font-weight: 500;
+            margin-bottom: 14px;
+        }
+
+        .qr-wrapper {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 12px;
+            display: inline-block;
+            margin-top: 4px;
+        }
+
+        .qr-wrapper img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            display: block;
+            background: white;
+        }
+
+        .qr-label {
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 8px;
+            letter-spacing: 0.3px;
+        }
+
+        .contact-card .desc {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        footer {
+            background-color: #0f2027;
+            color: #a0a0a0;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+            nav ul {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            nav ul li {
+                margin: 5px 10px;
+            }
+            .page-banner h2 {
+                font-size: 2.2rem;
+            }
+            .contact-card {
+                width: 200px;
+                padding: 20px 16px;
+            }
+            .qr-wrapper img {
+                width: 120px;
+                height: 120px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-card {
+                width: 100%;
+                max-width: 260px;
+            }
+            .qr-wrapper img {
+                width: 140px;
+                height: 140px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <h1>大连市第二十四中学信息社团</h1>
+            <p>IT Club of Dalian No.24 High School</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">首页 Home</a></li>
+                <li><a href="info.html">关于我们 About Us</a></li>
+                <li><a href="act.html">社团活动 Activities</a></li>
+                <li><a href="honors.html">竞赛荣誉 Honors</a></li>
+                <li><a href="contact.html">加入我们 Join Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="page-banner">
+        <h2>📬 加入我们</h2>
+        <p>扫码联系，开启你的信息学之旅</p>
+    </section>
+
+    <div class="contact-content">
+        <h3 class="section-title">联系方式</h3>
+        <div class="contact-grid">
+            <!-- 社长 牟昱德 -->
+            <div class="contact-card">
+                <span class="avatar">🧑‍💻</span>
+                <h3>牟昱德 (MYD)</h3>
+                <p class="role">社长 · 社团创始人</p>
+                <div class="qr-wrapper">
+                    <img src="myd_qr.jpeg" alt="社长牟昱德微信二维码">
+                </div>
+                <p class="qr-label">微信扫码联系社长</p>
+                <p class="desc">2.9 牟昱德</p>
+            </div>
+
+            <!-- 副社长 雷一鸣 -->
+            <div class="contact-card">
+                <span class="avatar">🧑‍💻</span>
+                <h3>雷一鸣</h3>
+                <p class="role">副社长 · NOIP省一</p>
+                <div class="qr-wrapper">
+                    <img src="lym_qr.jpeg" alt="副社长雷一鸣微信二维码">
+                </div>
+                <p class="qr-label">微信扫码联系副社长</p>
+                <p class="desc">2.1 雷一鸣</p>
+            </div>
+
+            <!-- 社团公众号 -->
+            <div class="contact-card">
+                <span class="avatar">📱</span>
+                <h3>社团公众号</h3>
+                <p class="role">获取最新资讯</p>
+                <div class="qr-wrapper">
+                    <img src="gzh.jpeg" alt="社团公众号二维码">
+                </div>
+                <p class="qr-label">微信扫码关注公众号</p>
+                <p class="desc">大连市第二十四中学信息社团</p>
+            </div>
+        </div>
+        <!-- 无额外说明文字 -->
+    </div>
+
+    <footer>
+        <p>&copy; 2026 大连市第二十四中学信息社团 (IT Club of Dalian No.24 High School). All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

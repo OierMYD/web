@@ -109,7 +109,7 @@
         }
 
         .features-section {
-            padding: 80px 5%;
+            padding: 80px 5% 60px;
             text-align: center;
         }
 
@@ -170,6 +170,43 @@
             font-size: 0.95rem;
         }
 
+        /* --- 友链样式 --- */
+        .friend-link-section {
+            text-align: center;
+            padding: 20px 5% 40px;
+        }
+
+        .friend-link-section .section-title {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+        }
+
+        .friend-link-section .section-title::after {
+            left: 25%;
+            width: 50%;
+        }
+
+        .friend-link-section a {
+            display: inline-block;
+            font-size: 1.2rem;
+            color: #4facfe;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 20px;
+            border: 2px solid #4facfe;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            background-color: white;
+            box-shadow: 0 2px 8px rgba(79, 172, 254, 0.15);
+        }
+
+        .friend-link-section a:hover {
+            background-color: #4facfe;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(79, 172, 254, 0.35);
+        }
+
         footer {
             background-color: #0f2027;
             color: #a0a0a0;
@@ -193,6 +230,10 @@
             }
             .hero h2 {
                 font-size: 2rem;
+            }
+            .friend-link-section a {
+                font-size: 1rem;
+                padding: 6px 16px;
             }
         }
     </style>
@@ -243,9 +284,17 @@
         </div>
     </section>
 
+    <!-- 友链区域 -->
+    <section class="friend-link-section">
+        <h2 class="section-title">🔗 友链</h2>
+        <a href="https://www.nightstriker.top/" target="_blank" rel="noopener noreferrer">
+            24OI新生@NightStriker
+        </a>
+    </section>
+
     <footer>
         <p>&copy; 2026 大连市第二十四中学信息社团 (IT Club of Dalian No.24 High School). All Rights Reserved.</p>
-           </footer>
+    </footer>
 
 </body>
 </html>

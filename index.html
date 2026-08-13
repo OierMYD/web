@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>大连市第二十四中学信息社团 | Dalian No.24 High School IT Club</title>
-    <!-- 增加网页图标：同目录下的 logo.png -->
-    <link rel="icon" href="logo.jpg" type="image/png">
+    <link rel="icon" href="logo.jpg" type="image/png" />
     <style>
         * {
             margin: 0;
@@ -68,7 +67,8 @@
 
         .hero {
             height: 70vh;
-            background: linear-gradient(rgba(15, 32, 39, 0.8), rgba(32, 58, 67, 0.8)), url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center/cover;
+            background: linear-gradient(rgba(15, 32, 39, 0.8), rgba(32, 58, 67, 0.8)),
+                url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center/cover;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -81,7 +81,7 @@
         .hero h2 {
             font-size: 3rem;
             margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         .hero p {
@@ -91,9 +91,9 @@
             color: #e0e0e0;
         }
 
+        /* 基础按钮样式（两个按钮共用） */
         .btn {
             padding: 12px 30px;
-            background-color: #4facfe;
             color: white;
             text-decoration: none;
             border-radius: 25px;
@@ -101,11 +101,29 @@
             font-weight: bold;
             transition: transform 0.3s ease, background-color 0.3s ease;
             box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
+            display: inline-block;
+            margin: 6px 0; /* 垂直间距 */
         }
 
         .btn:hover {
             transform: translateY(-3px);
+        }
+
+        /* 原有蓝色按钮 */
+        .btn-primary {
+            background-color: #4facfe;
+        }
+        .btn-primary:hover {
             background-color: #00f2fe;
+        }
+
+        /* 新增橙色按钮（在线IDE） */
+        .btn-ide {
+            background-color: #f39c12;
+            box-shadow: 0 4px 15px rgba(243, 156, 18, 0.4);
+        }
+        .btn-ide:hover {
+            background-color: #e67e22;
         }
 
         .features-section {
@@ -144,13 +162,13 @@
             width: 300px;
             padding: 30px 20px;
             border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
 
         .card-icon {
@@ -170,7 +188,7 @@
             font-size: 0.95rem;
         }
 
-        /* --- 友链样式 --- */
+        /* 友链样式 */
         .friend-link-section {
             text-align: center;
             padding: 20px 5% 40px;
@@ -235,6 +253,11 @@
                 font-size: 1rem;
                 padding: 6px 16px;
             }
+            /* 按钮在移动端宽度自适应 */
+            .btn {
+                padding: 10px 24px;
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -247,7 +270,6 @@
         </div>
         <nav>
             <ul>
-                <!-- 导航链接全部指向同目录下的对应 .html 文件 -->
                 <li><a href="index.html">首页 Home</a></li>
                 <li><a href="info.html">关于我们 About Us</a></li>
                 <li><a href="act.html">社团活动 Activities</a></li>
@@ -259,9 +281,12 @@
 
     <section class="hero">
         <h2>探索代码世界，创造无限未来</h2>
-        <p>Explore the world of code, create an infinite future. </p>
+        <p>Explore the world of code, create an infinite future.</p>
         <p>在这里，与热爱科技的同学们一起碰撞思维的火花。</p>
-        <a href="contact.html" class="btn">即刻加入我们</a>
+        <!-- 原有按钮 -->
+        <a href="contact.html" class="btn btn-primary">即刻加入我们</a>
+        <!-- 新增在线IDE按钮，同尺寸，不同颜色，指向ide.html -->
+        <a href="ide.html" class="btn btn-ide">在线IDE</a>
     </section>
 
     <section class="features-section">

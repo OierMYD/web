@@ -102,7 +102,8 @@
             transition: transform 0.3s ease, background-color 0.3s ease;
             box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
             display: inline-block;
-            margin: 6px 0; /* 垂直间距 */
+            margin: 6px 0;
+            /* 垂直间距 */
         }
 
         .btn:hover {
@@ -225,6 +226,62 @@
             box-shadow: 0 6px 20px rgba(79, 172, 254, 0.35);
         }
 
+        /* ---- 新增：预备队 & 后备力量 区域 ---- */
+        .reserve-section {
+            text-align: center;
+            padding: 10px 5% 40px;
+        }
+
+        .reserve-section .section-title {
+            font-size: 1.6rem;
+            margin-bottom: 16px;
+        }
+
+        .reserve-section .section-title::after {
+            left: 25%;
+            width: 50%;
+        }
+
+        .reserve-desc {
+            max-width: 700px;
+            margin: 0 auto 20px auto;
+            font-size: 1.05rem;
+            color: #444;
+            background: #f0f4f8;
+            padding: 18px 28px;
+            border-radius: 16px;
+            border-left: 5px solid #4facfe;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            line-height: 1.8;
+        }
+
+        .reserve-desc strong {
+            color: #0f2027;
+        }
+
+        .reserve-desc .highlight {
+            color: #4facfe;
+            font-weight: 600;
+        }
+
+        .reserve-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #203a43, #0f2027);
+            color: white;
+            padding: 8px 24px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 12px rgba(15, 32, 39, 0.25);
+        }
+
+        .reserve-badge span {
+            font-size: 1.2rem;
+        }
+
         footer {
             background-color: #0f2027;
             color: #a0a0a0;
@@ -253,10 +310,17 @@
                 font-size: 1rem;
                 padding: 6px 16px;
             }
-            /* 按钮在移动端宽度自适应 */
             .btn {
                 padding: 10px 24px;
                 font-size: 1rem;
+            }
+            .reserve-desc {
+                font-size: 0.95rem;
+                padding: 14px 18px;
+            }
+            .reserve-badge {
+                font-size: 0.85rem;
+                padding: 6px 18px;
             }
         }
     </style>
@@ -280,12 +344,9 @@
     </header>
 
     <section class="hero">
-        <h2>探索代码世界，创造无限未来</h2>
-        <p>Explore the world of code, create an infinite future.</p>
+        <h2>探索信息世界，创造无限未来</h2>
         <p>在这里，与热爱科技的同学们一起碰撞思维的火花。</p>
-        <!-- 原有按钮 -->
         <a href="contact.html" class="btn btn-primary">即刻加入我们</a>
-        <!-- 新增在线IDE按钮，同尺寸，不同颜色，指向ide.html -->
         <a href="ide.html" class="btn btn-ide">在线IDE</a>
     </section>
 
@@ -295,18 +356,36 @@
             <div class="card">
                 <div class="card-icon">💻</div>
                 <h3>算法与编程</h3>
-                <p>学习 C++、Python 等主流编程语言。我们定期举办算法讲座，备战信息学奥林匹克竞赛 (CSP/NOIP)。</p>
+                <p>了解 C++、Python 等主流编程语言。我们将简单探讨算法，了解信息学奥林匹克竞赛 。</p>
             </div>
             <div class="card">
                 <div class="card-icon">🌐</div>
                 <h3>Web 极客开发</h3>
-                <p>从 HTML/CSS 到前端框架，掌握构建现代网站的技术。动手打造属于你自己的互联网应用。</p>
+                <p>从 HTML/CSS 到前端框架，了解构建现代网站的技术。尝试动手打造属于你自己的互联网应用。</p>
             </div>
             <div class="card">
                 <div class="card-icon">🤖</div>
                 <h3>人工智能探索</h3>
                 <p>接触机器学习基础，探讨 AI 在未来的应用，拓展科技视野，培养解决实际问题的能力。</p>
             </div>
+        </div>
+    </section>
+
+    <!-- ===== 新增：24OI 预备队 & 后备力量 ===== -->
+    <section class="reserve-section">
+        <h2 class="section-title">🚀 24OI 预备队 &amp; 后备力量</h2>
+        <div class="reserve-desc">
+            <strong>大连市第二十四中学信息社团</strong> 是 <span class="highlight">24OI</span> 的
+            <strong>预备队 &amp; 后备力量</strong>。
+            我们致力于为热爱信息学竞赛但是无法继续学习的、或者即将入学的同学提供帮助，通过社团日常授课、
+            模拟赛与算法研讨，共同探索新知。
+            <br />
+            <span style="display:inline-block; margin-top:8px; color:#203a43;">
+                🌟 我社与24OI关系密切，但并不是24OI。
+            </span>
+        </div>
+        <div class="reserve-badge">
+            <span>注：</span>24OI暂无竞赛社团化倾向
         </div>
     </section>
 

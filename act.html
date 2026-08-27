@@ -208,6 +208,48 @@
             padding-left: 0;
         }
 
+        /* 新增：挑战赛卡片样式 */
+        .challenge-card {
+            background: white;
+            padding: 25px 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-left: 5px solid #4facfe;
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            transition: transform 0.2s ease;
+        }
+        .challenge-card:hover {
+            transform: translateX(5px);
+        }
+        .challenge-card .challenge-info {
+            flex: 1;
+        }
+        .challenge-card .challenge-info p {
+            font-size: 1.05rem;
+            color: #444;
+            margin-bottom: 5px;
+        }
+        .challenge-card .challenge-btn {
+            background: #4facfe;
+            color: white;
+            padding: 10px 28px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0 4px 12px rgba(79, 172, 254, 0.3);
+            flex-shrink: 0;
+            margin-left: 20px;
+        }
+        .challenge-card .challenge-btn:hover {
+            background: #00f2fe;
+            transform: translateY(-2px);
+        }
+
         footer {
             background-color: #0f2027;
             color: #a0a0a0;
@@ -249,6 +291,16 @@
             .link-content a {
                 font-size: 1rem;
             }
+            .challenge-card {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+            .challenge-card .challenge-btn {
+                margin-left: 0;
+                margin-top: 15px;
+                text-align: center;
+            }
         }
     </style>
 </head>
@@ -286,6 +338,18 @@
                 <div class="photo-card">
                     <img src="hz_2025.jpg" alt="2025年社团嘉年华社团成员合影">
                 </div>
+            </div>
+        </div>
+
+        <!-- 新增：2026年信息社挑战赛 -->
+        <div class="activity-section">
+            <h3 class="section-title">🚀 2026年信息社挑战赛</h3>
+            <div class="challenge-card">
+                <div class="challenge-info">
+                    <p><strong>面向全体社员的编程挑战赛</strong> — 展现你的算法与创意！</p>
+                    <p style="font-size: 0.95rem; color: #777; margin-top: 4px;">比赛详情、规则及报名入口请点击下方按钮。</p>
+                </div>
+                <a href="contest_2026.html" class="challenge-btn">查看详情 →</a>
             </div>
         </div>
 

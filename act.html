@@ -1,396 +1,147 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>社团活动 | 大连市第二十四中学信息社团</title>
-    <link rel="icon" href="logo.jpg" type="image/png">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'PingFang SC', 'Microsoft YaHei', 'Segoe UI', Roboto, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        header {
-            background-color: #0f2027;
-            background: linear-gradient(to right, #203a43, #0f2027);
-            color: white;
-            padding: 15px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .logo-container h1 {
-            font-size: 1.5rem;
-            letter-spacing: 1px;
-        }
-
-        .logo-container p {
-            font-size: 0.8rem;
-            color: #4facfe;
-            margin-top: 3px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-        }
-
-        nav ul li {
-            margin-left: 30px;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        nav ul li a:hover {
-            color: #4facfe;
-        }
-
-        /* 内页横幅 */
-        .page-banner {
-            background: linear-gradient(rgba(15, 32, 39, 0.8), rgba(32, 58, 67, 0.8)), url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center/cover;
-            padding: 60px 5%;
-            text-align: center;
-            color: white;
-        }
-
-        .page-banner h2 {
-            font-size: 2.8rem;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .page-banner p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto;
-            color: #e0e0e0;
-        }
-
-        .activity-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 60px 5%;
-        }
-
-        .activity-section {
-            margin-bottom: 60px;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            color: #203a43;
-            margin-bottom: 25px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title::after {
-            content: '';
-            width: 50%;
-            height: 3px;
-            background-color: #4facfe;
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            border-radius: 2px;
-        }
-
-        /* 图片展示网格 - 无文字解说 */
-        .photo-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .photo-card {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            overflow: hidden;
-            width: 320px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .photo-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 28px rgba(0,0,0,0.12);
-        }
-
-        .photo-card img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            display: block;
-            background-color: #e9ecef; /* 图片加载时占位背景 */
-        }
-
-        /* 公众号链接卡片 - 增加校徽样式 */
-        .link-card {
-            background: white;
-            padding: 25px 30px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border-left: 5px solid #4facfe;
-            margin-bottom: 20px;
-            transition: transform 0.2s ease;
-            display: flex;
-            align-items: flex-start;
-            gap: 18px;
-        }
-
-        .link-card:hover {
-            transform: translateX(5px);
-        }
-
-        /* 校徽图片样式 */
-        .school-logo {
-            width: 50px;
-            height: 50px;
-            object-fit: contain;
-            flex-shrink: 0;
-            border-radius: 4px;
-            background-color: #f8f9fa; /* 浅色背景让logo更突出 */
-            padding: 2px;
-        }
-
-        .link-content {
-            flex: 1;
-            min-width: 0; /* 防止溢出 */
-        }
-
-        .link-content a {
-            color: #0f2027;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .link-content a:hover {
-            color: #4facfe;
-        }
-
-        .link-content .link-meta {
-            font-weight: normal;
-            font-size: 0.9rem;
-            color: #777;
-        }
-
-        .link-content .link-desc {
-            margin-top: 8px;
-            color: #555;
-            font-size: 0.95rem;
-            padding-left: 0;
-        }
-
-        /* 新增：挑战赛卡片样式 */
-        .challenge-card {
-            background: white;
-            padding: 25px 30px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border-left: 5px solid #4facfe;
-            margin-top: 20px;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            transition: transform 0.2s ease;
-        }
-        .challenge-card:hover {
-            transform: translateX(5px);
-        }
-        .challenge-card .challenge-info {
-            flex: 1;
-        }
-        .challenge-card .challenge-info p {
-            font-size: 1.05rem;
-            color: #444;
-            margin-bottom: 5px;
-        }
-        .challenge-card .challenge-btn {
-            background: #4facfe;
-            color: white;
-            padding: 10px 28px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background 0.3s, transform 0.2s;
-            box-shadow: 0 4px 12px rgba(79, 172, 254, 0.3);
-            flex-shrink: 0;
-            margin-left: 20px;
-        }
-        .challenge-card .challenge-btn:hover {
-            background: #00f2fe;
-            transform: translateY(-2px);
-        }
-
-        footer {
-            background-color: #0f2027;
-            color: #a0a0a0;
-            text-align: center;
-            padding: 20px 0;
-            font-size: 0.9rem;
-            margin-top: 30px;
-        }
-
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                text-align: center;
-            }
-            nav ul {
-                margin-top: 15px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            nav ul li {
-                margin: 5px 10px;
-            }
-            .page-banner h2 {
-                font-size: 2.2rem;
-            }
-            .photo-card {
-                width: 100%;
-                max-width: 360px;
-            }
-            .link-card {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
-            }
-            .school-logo {
-                width: 40px;
-                height: 40px;
-            }
-            .link-content a {
-                font-size: 1rem;
-            }
-            .challenge-card {
-                flex-direction: column;
-                align-items: stretch;
-                text-align: center;
-            }
-            .challenge-card .challenge-btn {
-                margin-left: 0;
-                margin-top: 15px;
-                text-align: center;
-            }
-        }
-    </style>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>社团活动 | 大连市第二十四中学信息社团</title>
+ <meta name="description" content="大连市第二十四中学信息社团活动记录 — 社团嘉年华、信息社挑战赛与竞赛荣耀官方报道。" />
+ <link rel="icon" href="logo.jpg" type="image/png" />
+ <link rel="stylesheet" href="theme.css" />
 </head>
 <body>
 
-    <header>
-        <div class="logo-container">
-            <h1>大连市第二十四中学信息社团</h1>
-            <p>IT Club of Dalian No.24 High School</p>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">首页 Home</a></li>
-                <li><a href="info.html">关于我们 About Us</a></li>
-                <li><a href="act.html">社团活动 Activities</a></li>
-                <li><a href="honors.html">竞赛荣誉 Honors</a></li>
-                <li><a href="contact.html">加入我们 Join Us</a></li>
-            </ul>
-        </nav>
-    </header>
+ <a class="skip-link" href="#main">跳到主要内容</a>
+ <div class="progress" aria-hidden="true"></div>
 
-    <section class="page-banner">
-        <h2>社团活动</h2>
-        <p>记录我们共同走过的每一步 — 从校园嘉年华到信息学竞赛赛场</p>
-    </section>
+ <!-- ===== 顶部导航 ===== -->
+ <header class="topbar">
+ <div class="topbar-inner">
+ <a class="brand" href="index.html" aria-label="大连市第二十四中学信息社团首页">
+ <span class="brand-mark"><img src="logo.jpg" alt=""></span>
+ <span class="brand-text">
+ <span class="brand-title">大连市第二十四中学信息社团</span>
+ <span class="brand-sub">IT Club of Dalian No.24 High School</span>
+ </span>
+ </a>
 
-    <div class="activity-content">
-        <!-- 社团嘉年华活动 - 仅图片，无文字 -->
-        <div class="activity-section">
-            <h3 class="section-title"> 社团嘉年华（2025摊位）与合照（2026年6月）</h3>
-            <div class="photo-grid">
-                <div class="photo-card">
-                    <img src="2025_bt.jpg" alt="2025年社团嘉年华活动现场">
-                </div>
-                <div class="photo-card">
-                    <img src="hz_2025.jpg" alt="2025年社团嘉年华社团成员合影">
-                </div>
-            </div>
-        </div>
+ <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="siteNav" aria-label="展开导航菜单">
+ <span></span><span></span><span></span>
+ </button>
 
-        <!-- 新增：2026年信息社挑战赛 -->
-        <div class="activity-section">
-            <h3 class="section-title">🚀 2026年信息社挑战赛</h3>
-            <div class="challenge-card">
-                <div class="challenge-info">
-                    <p><strong>面向全体社员的编程挑战赛</strong> — 展现你的算法与创意！</p>
-                    <p style="font-size: 0.95rem; color: #777; margin-top: 4px;">比赛详情、规则及报名入口请点击下方按钮。</p>
-                </div>
-                <a href="contest_2026.html" class="challenge-btn">查看详情 →</a>
-            </div>
-        </div>
+ <nav class="nav" id="siteNav" aria-label="主导航">
+ <ul class="nav-list">
+ <li><a class="nav-link" href="index.html">首页<small>Home</small></a></li>
+ <li><a class="nav-link" href="info.html">关于我们<small>About Us</small></a></li>
+ <li><a class="nav-link" href="act.html">社团活动<small>Activities</small></a></li>
+ <li><a class="nav-link" href="honors.html">竞赛荣誉<small>Honors</small></a></li>
+ <li><a class="nav-link" href="contact.html">加入我们<small>Join Us</small></a></li>
+ </ul>
+ </nav>
+ </div>
+ </header>
 
-        <!-- 竞赛荣誉与公众号报道 -->
-        <div class="activity-section">
-            <h3 class="section-title">🏆 竞赛荣耀 · 官方报道</h3>
-            <p style="margin-bottom: 20px; color: #555;">以下是我校信息学竞赛团队在2025年CSP-J/S与NOIP中取得优异成绩后，学校官方公众号发布的报道。</p>
-            
-            <!-- 第一个链接：添加校徽 -->
-            <div class="link-card">
-                <img src="school_logo.jpg" alt="大连市第二十四中学校徽" class="school-logo">
-                <div class="link-content">
-                    <a href="https://mp.weixin.qq.com/s/sjxZq4JyexnmgUYMjoEi9g" target="_blank" rel="noopener noreferrer">
-                        <span>📄</span> 拔尖创新 || 大连市第二十四中学信息学竞赛在CSP-J/S2025中取得佳绩
-                        <span class="link-meta">（2025-11-27）</span>
-                    </a>
-                    <div class="link-desc">
-                        在刘昊教练、周亚娟教练指导下，9人获提高级一等奖，修涵同学获辽宁省女子组第一名。
-                    </div>
-                </div>
-            </div>
+ <main id="main">
 
-            <!-- 第二个链接：添加校徽 -->
-            <div class="link-card">
-                <img src="school_logo.jpg" alt="大连市第二十四中学校徽" class="school-logo">
-                <div class="link-content">
-                    <a href="https://mp.weixin.qq.com/s/zHz8kACUuly6jo_6E0j6KQ" target="_blank" rel="noopener noreferrer">
-                        <span>📄</span> 拔尖创新 || 大连市第二十四中学信息学竞赛在NOIP2025中取得佳绩
-                        <span class="link-meta">（2025-12-22）</span>
-                    </a>
-                    <div class="link-desc">
-                        4人获辽宁省一等奖。
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+ <!-- ===== 页头横幅 ===== -->
+ <section class="page-hero">
+ <span class="breadcrumb"><a href="index.html">首页</a> / 社团活动</span>
+ <h2>社团活动</h2>
+ <p>记录我们共同走过的每一步 — 从校园嘉年华到信息学竞赛赛场</p>
+ </section>
 
-    <footer>
-        <p>&copy; 2026 大连市第二十四中学信息社团 (IT Club of Dalian No.24 High School). All Rights Reserved.</p>
-    </footer>
+ <div class="content">
+
+ <!-- 社团嘉年华 -->
+ <section class="block">
+ <h3 class="section-title reveal">社团嘉年华（2025摊位）与合照（2026年6月）</h3>
+ <div class="photos">
+ <figure class="photo photo--wide reveal-in" data-reveal-group="photos" data-zoom>
+ <img src="2025_bt.jpg" alt="2025年社团嘉年华活动现场" loading="lazy">
+ <span class="zoom-hint" aria-hidden="true"></span>
+ <figcaption>2025 年社团嘉年华 · 信息社摊位现场</figcaption>
+ </figure>
+ <figure class="photo photo--wide reveal-in" data-reveal-group="photos" data-zoom>
+ <img src="hz_2025.jpg" alt="2025年社团嘉年华社团成员合影" loading="lazy">
+ <span class="zoom-hint" aria-hidden="true"></span>
+ <figcaption>社团成员合影</figcaption>
+ </figure>
+ </div>
+ </section>
+
+ <!-- 2026 挑战赛 -->
+ <section class="block">
+ <h3 class="section-title reveal"> 2026年信息社挑战赛</h3>
+ <div class="cta-card reveal">
+ <div class="cta-info">
+ <strong>面向全体社员的编程挑战赛</strong>
+ <p>展现你的算法与创意！比赛详情、规则及报名入口请点击右侧按钮。</p>
+ </div>
+ <a href="contest_2026.html" class="btn btn-primary">查看详情 →</a>
+ </div>
+ </section>
+
+ <!-- 竞赛荣耀 · 官方报道 -->
+ <section class="block">
+ <h3 class="section-title reveal">竞赛荣耀 · 官方报道</h3>
+ <p class="section-lead reveal">以下是我校信息学竞赛团队在2025年CSP-J/S与NOIP中取得优异成绩后，学校官方公众号发布的报道。</p>
+
+ <div class="stack">
+ <article class="link-card reveal-in" data-reveal-group="reports">
+ <img src="school_logo.jpg" alt="大连市第二十四中学校徽" class="school-logo">
+ <div class="link-body">
+ <a href="https://mp.weixin.qq.com/s/sjxZq4JyexnmgUYMjoEi9g" target="_blank" rel="noopener noreferrer">
+ 拔尖创新 || 大连市第二十四中学信息学竞赛在CSP-J/S2025中取得佳绩
+ <span class="meta">2025-11-27</span>
+ <span class="ext" aria-hidden="true">↗</span>
+ </a>
+ <p class="desc">在刘昊教练、周亚娟教练指导下，9人获提高级一等奖，修涵同学获辽宁省女子组第一名。</p>
+ </div>
+ </article>
+
+ <article class="link-card reveal-in" data-reveal-group="reports">
+ <img src="school_logo.jpg" alt="大连市第二十四中学校徽" class="school-logo">
+ <div class="link-body">
+ <a href="https://mp.weixin.qq.com/s/zHz8kACUuly6jo_6E0j6KQ" target="_blank" rel="noopener noreferrer">
+ 拔尖创新 || 大连市第二十四中学信息学竞赛在NOIP2025中取得佳绩
+ <span class="meta">2025-12-22</span>
+ <span class="ext" aria-hidden="true">↗</span>
+ </a>
+ <p class="desc">4人获辽宁省一等奖。</p>
+ </div>
+ </article>
+ </div>
+ </section>
+
+ </div>
+
+ </main>
+
+ <!-- ===== 页脚 ===== -->
+ <footer>
+ <div class="footer-inner">
+ <div class="footer-brand">
+ <span class="brand-mark"><img src="logo.jpg" alt=""></span>
+ <span>
+ <strong>大连市第二十四中学信息社团</strong>
+ <small>IT CLUB · DALIAN NO.24 HS</small>
+ </span>
+ </div>
+ <nav class="footer-nav" aria-label="页脚导航">
+ <a href="index.html">首页</a>
+ <a href="info.html">关于我们</a>
+ <a href="act.html">社团活动</a>
+ <a href="honors.html">竞赛荣誉</a>
+ <a href="ide.html">在线 IDE</a>
+ <a href="contact.html">加入我们</a>
+ </nav>
+ </div>
+ <div class="footer-bottom">
+ &copy; 2026 大连市第二十四中学信息社团 (IT Club of Dalian No.24 High School). All Rights Reserved.
+ </div>
+ </footer>
+
+ <button class="to-top" id="toTop" type="button" aria-label="回到顶部">↑</button>
+ <script src="theme.js"></script>
 
 </body>
 </html>

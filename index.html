@@ -4,402 +4,143 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>大连市第二十四中学信息社团 | Dalian No.24 High School IT Club</title>
+    <meta name="description" content="大连市第二十四中学信息社团官方网站 — 算法与编程、Web 开发、人工智能探索，24OI 预备队与后备力量。" />
     <link rel="icon" href="logo.jpg" type="image/png" />
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'PingFang SC', 'Microsoft YaHei', 'Segoe UI', Roboto, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        header {
-            background-color: #0f2027;
-            background: linear-gradient(to right, #203a43, #0f2027);
-            color: white;
-            padding: 15px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .logo-container h1 {
-            font-size: 1.5rem;
-            letter-spacing: 1px;
-        }
-
-        .logo-container p {
-            font-size: 0.8rem;
-            color: #4facfe;
-            margin-top: 3px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-        }
-
-        nav ul li {
-            margin-left: 30px;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        nav ul li a:hover {
-            color: #4facfe;
-        }
-
-        .hero {
-            height: 70vh;
-            background: linear-gradient(rgba(15, 32, 39, 0.8), rgba(32, 58, 67, 0.8)),
-                url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center/cover;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: white;
-            padding: 0 20px;
-        }
-
-        .hero h2 {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            max-width: 600px;
-            color: #e0e0e0;
-        }
-
-        /* 基础按钮样式（两个按钮共用） */
-        .btn {
-            padding: 12px 30px;
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-            box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
-            display: inline-block;
-            margin: 6px 0;
-            /* 垂直间距 */
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-        }
-
-        /* 原有蓝色按钮 */
-        .btn-primary {
-            background-color: #4facfe;
-        }
-        .btn-primary:hover {
-            background-color: #00f2fe;
-        }
-
-        /* 新增橙色按钮（在线IDE） */
-        .btn-ide {
-            background-color: #f39c12;
-            box-shadow: 0 4px 15px rgba(243, 156, 18, 0.4);
-        }
-        .btn-ide:hover {
-            background-color: #e67e22;
-        }
-
-        .features-section {
-            padding: 80px 5% 60px;
-            text-align: center;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            margin-bottom: 40px;
-            color: #203a43;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title::after {
-            content: '';
-            width: 50%;
-            height: 3px;
-            background-color: #4facfe;
-            position: absolute;
-            bottom: -10px;
-            left: 25%;
-            border-radius: 2px;
-        }
-
-        .cards-container {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-
-        .card {
-            background-color: white;
-            width: 300px;
-            padding: 30px 20px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .card-icon {
-            font-size: 3rem;
-            color: #4facfe;
-            margin-bottom: 15px;
-        }
-
-        .card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            color: #203a43;
-        }
-
-        .card p {
-            color: #666;
-            font-size: 0.95rem;
-        }
-
-        /* 友链样式 */
-        .friend-link-section {
-            text-align: center;
-            padding: 20px 5% 40px;
-        }
-
-        .friend-link-section .section-title {
-            font-size: 1.6rem;
-            margin-bottom: 20px;
-        }
-
-        .friend-link-section .section-title::after {
-            left: 25%;
-            width: 50%;
-        }
-
-        .friend-link-section a {
-            display: inline-block;
-            font-size: 1.2rem;
-            color: #4facfe;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 8px 20px;
-            border: 2px solid #4facfe;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-            background-color: white;
-            box-shadow: 0 2px 8px rgba(79, 172, 254, 0.15);
-        }
-
-        .friend-link-section a:hover {
-            background-color: #4facfe;
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(79, 172, 254, 0.35);
-        }
-
-        /* ---- 新增：预备队 & 后备力量 区域 ---- */
-        .reserve-section {
-            text-align: center;
-            padding: 10px 5% 40px;
-        }
-
-        .reserve-section .section-title {
-            font-size: 1.6rem;
-            margin-bottom: 16px;
-        }
-
-        .reserve-section .section-title::after {
-            left: 25%;
-            width: 50%;
-        }
-
-        .reserve-desc {
-            max-width: 700px;
-            margin: 0 auto 20px auto;
-            font-size: 1.05rem;
-            color: #444;
-            background: #f0f4f8;
-            padding: 18px 28px;
-            border-radius: 16px;
-            border-left: 5px solid #4facfe;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-            line-height: 1.8;
-        }
-
-        .reserve-desc strong {
-            color: #0f2027;
-        }
-
-        .reserve-desc .highlight {
-            color: #4facfe;
-            font-weight: 600;
-        }
-
-        .reserve-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: linear-gradient(135deg, #203a43, #0f2027);
-            color: white;
-            padding: 8px 24px;
-            border-radius: 30px;
-            font-size: 0.95rem;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            box-shadow: 0 4px 12px rgba(15, 32, 39, 0.25);
-        }
-
-        .reserve-badge span {
-            font-size: 1.2rem;
-        }
-
-        footer {
-            background-color: #0f2027;
-            color: #a0a0a0;
-            text-align: center;
-            padding: 20px 0;
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                text-align: center;
-            }
-            nav ul {
-                margin-top: 15px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            nav ul li {
-                margin: 5px 10px;
-            }
-            .hero h2 {
-                font-size: 2rem;
-            }
-            .friend-link-section a {
-                font-size: 1rem;
-                padding: 6px 16px;
-            }
-            .btn {
-                padding: 10px 24px;
-                font-size: 1rem;
-            }
-            .reserve-desc {
-                font-size: 0.95rem;
-                padding: 14px 18px;
-            }
-            .reserve-badge {
-                font-size: 0.85rem;
-                padding: 6px 18px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="theme.css" />
 </head>
 <body>
 
-    <header>
-        <div class="logo-container">
-            <h1>大连市第二十四中学信息社团</h1>
-            <p>IT Club of Dalian No.24 High School</p>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+    <div class="progress" aria-hidden="true"></div>
+
+    <!-- ===== 顶部导航 ===== -->
+    <header class="topbar">
+        <div class="topbar-inner">
+            <a class="brand" href="index.html" aria-label="大连市第二十四中学信息社团首页">
+                <span class="brand-mark"><img src="logo.jpg" alt=""></span>
+                <span class="brand-text">
+                    <span class="brand-title">大连市第二十四中学信息社团</span>
+                    <span class="brand-sub">IT Club of Dalian No.24 High School</span>
+                </span>
+            </a>
+
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="siteNav" aria-label="展开导航菜单">
+                <span></span><span></span><span></span>
+            </button>
+
+            <nav class="nav" id="siteNav" aria-label="主导航">
+                <ul class="nav-list">
+                    <li><a class="nav-link" href="index.html">首页<small>Home</small></a></li>
+                    <li><a class="nav-link" href="info.html">关于我们<small>About Us</small></a></li>
+                    <li><a class="nav-link" href="act.html">社团活动<small>Activities</small></a></li>
+                    <li><a class="nav-link" href="honors.html">竞赛荣誉<small>Honors</small></a></li>
+                    <li><a class="nav-link" href="contact.html">加入我们<small>Join Us</small></a></li>
+                </ul>
+            </nav>
         </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">首页 Home</a></li>
-                <li><a href="info.html">关于我们 About Us</a></li>
-                <li><a href="act.html">社团活动 Activities</a></li>
-                <li><a href="honors.html">竞赛荣誉 Honors</a></li>
-                <li><a href="contact.html">加入我们 Join Us</a></li>
-            </ul>
-        </nav>
     </header>
 
-    <section class="hero">
-        <h2>探索信息世界，创造无限未来</h2>
-        <p>在这里，与热爱科技的同学们一起碰撞思维的火花。</p>
-        <a href="contact.html" class="btn btn-primary">即刻加入我们</a>
-        <a href="ide.html" class="btn btn-ide">在线IDE</a>
-    </section>
+    <main id="main">
 
-    <section class="features-section">
-        <h2 class="section-title">我们的主要活动</h2>
-        <div class="cards-container">
-            <div class="card">
-                <div class="card-icon">💻</div>
-                <h3>算法与编程</h3>
-                <p>了解 C++、Python 等主流编程语言。我们将简单探讨算法，了解信息学奥林匹克竞赛 。</p>
+        <!-- ===== Hero ===== -->
+        <section class="hero">
+            <span class="eyebrow hero-fade">2025 年建社 · 面向全校开放</span>
+            <h2 class="hero-fade">探索信息世界<br /><span class="grad">创造无限未来</span></h2>
+            <p class="hero-fade">在这里，与热爱科技的同学们一起碰撞思维的火花。</p>
+            <div class="btn-row hero-fade">
+                <a href="contact.html" class="btn btn-primary">即刻加入我们</a>
+                <a href="ide.html" class="btn btn-amber">在线 IDE</a>
             </div>
-            <div class="card">
-                <div class="card-icon">🌐</div>
-                <h3>Web 极客开发</h3>
-                <p>从 HTML/CSS 到前端框架，了解构建现代网站的技术。尝试动手打造属于你自己的互联网应用。</p>
+        </section>
+
+        <svg class="hero-curve" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0,42 C240,88 480,4 720,20 C960,36 1200,84 1440,44 L1440,80 L0,80 Z"></path>
+        </svg>
+
+        <!-- ===== 主要活动 ===== -->
+        <section class="section">
+            <div class="wrap">
+                <h2 class="section-title section-title--center reveal">我们的主要活动</h2>
+                <p class="section-lead reveal" style="text-align:center; margin-inline:auto;">三条主线并行：从打竞赛到做网站，再到看懂 AI。</p>
+                <div class="grid grid--3">
+                    <article class="card reveal-in" data-reveal-group="features">
+                        <div class="card-icon" aria-hidden="true">C++</div>
+                        <h3>算法与编程</h3>
+                        <p>了解 C++、Python 等主流编程语言。我们将简单探讨算法，了解信息学奥林匹克竞赛 。</p>
+                    </article>
+                    <article class="card reveal-in" data-reveal-group="features">
+                        <div class="card-icon" aria-hidden="true">Web</div>
+                        <h3>Web 极客开发</h3>
+                        <p>从 HTML/CSS 到前端框架，了解构建现代网站的技术。尝试动手打造属于你自己的互联网应用。</p>
+                    </article>
+                    <article class="card reveal-in" data-reveal-group="features">
+                        <div class="card-icon" aria-hidden="true">AI</div>
+                        <h3>人工智能探索</h3>
+                        <p>接触机器学习基础，探讨 AI 在未来的应用，拓展科技视野，培养解决实际问题的能力。</p>
+                    </article>
+                </div>
             </div>
-            <div class="card">
-                <div class="card-icon">🤖</div>
-                <h3>人工智能探索</h3>
-                <p>接触机器学习基础，探讨 AI 在未来的应用，拓展科技视野，培养解决实际问题的能力。</p>
+        </section>
+
+        <!-- ===== 预备队 & 后备力量 ===== -->
+        <section class="section section--tight">
+            <div class="wrap">
+                <h2 class="section-title section-title--center reveal">24OI 预备队 &amp; 后备力量</h2>
+                <div class="callout reveal">
+                    <strong>大连市第二十四中学信息社团</strong> 是 <span class="hl">24OI</span> 的
+                    <strong>预备队 &amp; 后备力量</strong>。
+                    我们致力于为热爱信息学竞赛但是无法继续学习的、或者即将入学的同学提供帮助，通过社团日常授课、
+                    模拟赛与算法研讨，共同探索新知。
+                    <br />
+                    <span class="note">我社与24OI关系密切，但并不是24OI。</span>
+                </div>
+                <div style="text-align:center;">
+                    <div class="pill-note reveal">
+                        <span>注</span>24OI暂无竞赛社团化倾向
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- ===== 新增：24OI 预备队 & 后备力量 ===== -->
-    <section class="reserve-section">
-        <h2 class="section-title">🚀 24OI 预备队 &amp; 后备力量</h2>
-        <div class="reserve-desc">
-            <strong>大连市第二十四中学信息社团</strong> 是 <span class="highlight">24OI</span> 的
-            <strong>预备队 &amp; 后备力量</strong>。
-            我们致力于为热爱信息学竞赛但是无法继续学习的、或者即将入学的同学提供帮助，通过社团日常授课、
-            模拟赛与算法研讨，共同探索新知。
-            <br />
-            <span style="display:inline-block; margin-top:8px; color:#203a43;">
-                🌟 我社与24OI关系密切，但并不是24OI。
-            </span>
-        </div>
-        <div class="reserve-badge">
-            <span>注：</span>24OI暂无竞赛社团化倾向
-        </div>
-    </section>
+        <!-- ===== 友链 ===== -->
+        <section class="section section--tight">
+            <div class="wrap">
+                <h2 class="section-title section-title--center reveal">友链</h2>
+                <div class="friend-links reveal">
+                    <a href="https://www.nightstriker.top/" target="_blank" rel="noopener noreferrer">
+                        <span class="dot" aria-hidden="true"></span>24OI新生@NightStriker
+                    </a>
+                </div>
+            </div>
+        </section>
 
-    <!-- 友链区域 -->
-    <section class="friend-link-section">
-        <h2 class="section-title">🔗 友链</h2>
-        <a href="https://www.nightstriker.top/" target="_blank" rel="noopener noreferrer">
-            24OI新生@NightStriker
-        </a>
-    </section>
+    </main>
 
+    <!-- ===== 页脚 ===== -->
     <footer>
-        <p>&copy; 2026 大连市第二十四中学信息社团 (IT Club of Dalian No.24 High School). All Rights Reserved.</p>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <span class="brand-mark"><img src="logo.jpg" alt=""></span>
+                <span>
+                    <strong>大连市第二十四中学信息社团</strong>
+                    <small>IT CLUB · DALIAN NO.24 HS</small>
+                </span>
+            </div>
+            <nav class="footer-nav" aria-label="页脚导航">
+                <a href="index.html">首页</a>
+                <a href="info.html">关于我们</a>
+                <a href="act.html">社团活动</a>
+                <a href="honors.html">竞赛荣誉</a>
+                <a href="ide.html">在线 IDE</a>
+                <a href="contact.html">加入我们</a>
+            </nav>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 大连市第二十四中学信息社团 (IT Club of Dalian No.24 High School). All Rights Reserved.
+        </div>
     </footer>
 
+    <button class="to-top" id="toTop" type="button" aria-label="回到顶部">↑</button>
+    <script src="theme.js"></script>
 </body>
 </html>

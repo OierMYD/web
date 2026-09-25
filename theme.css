@@ -1,148 +1,3808 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>大连市第二十四中学信息社团 | Dalian No.24 High School IT Club</title>
-    <meta name="description" content="大连市第二十四中学信息社团官方网站 — 算法与编程、Web 开发、人工智能探索，24OI 预备队与后备力量。" />
-    <link rel="icon" href="logo.jpg" type="image/png" />
-    <link rel="stylesheet" href="theme.css" />
-    <!-- theme-boot-script -->
-    <script>(function(){try{var t=localStorage.getItem('itclub-theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light'}document.documentElement.setAttribute('data-theme',t)}catch(e){document.documentElement.setAttribute('data-theme','light')}})();</script>
-</head>
-<body>
+/* =========================================================
+   大连市第二十四中学信息社团 · 全站主题样式 v2
+   设计基调：深海蓝 + 极光的品牌渐变、玻璃拟态导航、
+            柔和分层阴影、克制的微动效
+   ========================================================= */
 
-    <a class="skip-link" href="#main">跳到主要内容</a>
-    <div class="progress" aria-hidden="true"></div>
+/* ---------- 1. 设计变量 ---------- */
+:root {
+    --bg: #edf1f7;
+    --bg-soft: #f6f9fc;
+    --surface: #ffffff;
+    --surface-2: #f7fafc;
+    --ink: #0b1b24;
+    --ink-2: #2f444f;
+    --muted: #4f626e;
+    --line: #e2e9f1;
 
-    <!-- ===== 顶部导航 ===== -->
-    <header class="topbar">
-        <div class="topbar-inner">
-            <a class="brand" href="index.html" aria-label="大连市第二十四中学信息社团首页">
-                <span class="brand-mark"><img src="logo.jpg" alt=""></span>
-                <span class="brand-text">
-                    <span class="brand-title">大连市第二十四中学信息社团</span>
-                    <span class="brand-sub">IT Club of Dalian No.24 High School</span>
-                </span>
-            </a>
+    --brand-900: #07131a;
+    --brand-800: #0f2027;
+    --brand-700: #16303a;
+    --brand-600: #203a43;
 
-            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="siteNav" aria-label="展开导航菜单">
-                <span></span><span></span><span></span>
-            </button>
+    --accent: #4facfe;
+    --accent-2: #00f2fe;
+    --accent-deep: #0a63b5;
+    --amber: #f39c12;
+    --amber-2: #ffc256;
 
-            <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false" aria-label="切换黑夜模式" title="切换白天/黑夜模式"><svg class="tt-ico tt-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M18.7 5.3L17 7M7 17l-1.7 1.7"></path></svg><svg class="tt-ico tt-moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.6 14.2A8.6 8.6 0 0 1 9.8 3.4a8.6 8.6 0 1 0 10.8 10.8Z"></path></svg><span class="tt-knob" aria-hidden="true"></span></button>
-            <nav class="nav" id="siteNav" aria-label="主导航">
-                <ul class="nav-list">
-                    <li><a class="nav-link" href="index.html">首页<small>Home</small></a></li>
-                    <li><a class="nav-link" href="info.html">关于我们<small>About Us</small></a></li>
-                    <li><a class="nav-link" href="act.html">社团活动<small>Activities</small></a></li>
-                    <li><a class="nav-link" href="honors.html">竞赛荣誉<small>Honors</small></a></li>
-                    <li><a class="nav-link" href="contact.html">加入我们<small>Join Us</small></a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    --grad-accent: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --grad-amber: linear-gradient(135deg, #f39c12 0%, #ffc256 100%);
+    --grad-brand: linear-gradient(125deg, #0f2027 0%, #203a43 45%, #0f3b4c 100%);
 
-    <main id="main">
+    --r-sm: 10px;
+    --r-md: 16px;
+    --r-lg: 22px;
+    --r-xl: 30px;
+    --pill: 999px;
 
-        <!-- ===== Hero ===== -->
-        <section class="hero">
-            <span class="eyebrow hero-fade">2025 年建社 · 面向全校开放</span>
-            <h2 class="hero-fade"><span class="hero-school">大连市第二十四中学信息社</span>承廿四薪火，启科创新章</h2>
-            <div class="btn-row hero-fade">
-                <a href="contact.html" class="btn btn-primary">即刻加入我们</a>
-                <a href="ide.html" class="btn btn-amber">在线 IDE</a>
-            </div>
-        </section>
+    --sh-1: 0 1px 2px rgba(11, 27, 36, .05), 0 2px 8px rgba(11, 27, 36, .05);
+    --sh-2: 0 6px 18px rgba(11, 27, 36, .07), 0 2px 6px rgba(11, 27, 36, .04);
+    --sh-3: 0 18px 40px rgba(11, 27, 36, .12), 0 4px 12px rgba(11, 27, 36, .06);
+    --sh-accent: 0 10px 26px rgba(79, 172, 254, .32);
+    --sh-amber: 0 10px 26px rgba(243, 156, 18, .30);
 
-        <svg class="hero-curve" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true">
-            <path d="M0,42 C240,88 480,4 720,20 C960,36 1200,84 1440,44 L1440,80 L0,80 Z"></path>
-        </svg>
+    --pad: clamp(16px, 5vw, 56px);
+    --maxw: 1180px;
+    --ease: cubic-bezier(.22, .61, .36, 1);
+    --t-fast: .18s var(--ease);
+    --t: .28s var(--ease);
+    --t-slow: .55s var(--ease);
 
-        <!-- ===== 主要活动 ===== -->
-        <section class="section">
-            <div class="wrap">
-                <h2 class="section-title section-title--center reveal">我们的主要活动</h2>
-                <p class="section-lead reveal" style="text-align:center; margin-inline:auto;">三条主线并行：从打竞赛到做网站，再到看懂 AI。</p>
-                <div class="grid grid--3">
-                    <article class="card reveal-in" data-reveal-group="features">
-                        <div class="card-icon" aria-hidden="true">C++</div>
-                        <h3>算法与编程</h3>
-                        <p>了解 C++、Python 等主流编程语言。我们将简单探讨算法，了解信息学奥林匹克竞赛 。</p>
-                    </article>
-                    <article class="card reveal-in" data-reveal-group="features">
-                        <div class="card-icon" aria-hidden="true">Web</div>
-                        <h3>Web 极客开发</h3>
-                        <p>从 HTML/CSS 到前端框架，了解构建现代网站的技术。尝试动手打造属于你自己的互联网应用。</p>
-                    </article>
-                    <article class="card reveal-in" data-reveal-group="features">
-                        <div class="card-icon" aria-hidden="true">AI</div>
-                        <h3>人工智能探索</h3>
-                        <p>接触机器学习基础，探讨 AI 在未来的应用，拓展科技视野，培养解决实际问题的能力。</p>
-                    </article>
-                </div>
-            </div>
-        </section>
+    --font: 'PingFang SC', 'HarmonyOS Sans SC', 'Microsoft YaHei', 'Segoe UI', Roboto, system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', Consolas, 'Courier New', monospace;
+}
 
-        <!-- ===== 预备队 & 后备力量 ===== -->
-        <section class="section section--tight">
-            <div class="wrap">
-                <h2 class="section-title section-title--center reveal">24OI 预备队 &amp; 后备力量</h2>
-                <div class="callout reveal">
-                    <strong>大连市第二十四中学信息社团</strong> 是 <span class="hl">24OI</span> 的
-                    <strong>预备队 &amp; 后备力量</strong>。
-                    我们致力于为热爱信息学竞赛但是无法继续学习的、或者即将入学的同学提供帮助，通过社团日常授课、
-                    模拟赛与算法研讨，共同探索新知。
-                    <br />
-                    <span class="note">我社与24OI关系密切，但并不是24OI。</span>
-                </div>
-                <div style="text-align:center;">
-                    <div class="pill-note reveal">
-                        <span>注</span>24OI暂无竞赛社团化倾向
-                    </div>
-                </div>
-            </div>
-        </section>
+/* ---------- 2. 基础重置 ---------- */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        <!-- ===== 友链 ===== -->
-        <section class="section section--tight">
-            <div class="wrap">
-                <h2 class="section-title section-title--center reveal">友链</h2>
-                <div class="friend-links reveal">
-                    <a href="https://www.nightstriker.top/" target="_blank" rel="noopener noreferrer">
-                        <span class="dot" aria-hidden="true"></span>24OI新生@NightStriker
-                    </a>
-                </div>
-            </div>
-        </section>
+html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+}
 
-    </main>
+body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.68;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
 
-    <!-- ===== 页脚 ===== -->
-    <footer>
-        <div class="footer-inner">
-            <div class="footer-brand">
-                <span class="brand-mark"><img src="logo.jpg" alt=""></span>
-                <span>
-                    <strong>大连市第二十四中学信息社团</strong>
-                    <small>IT CLUB · DALIAN NO.24 HS</small>
-                </span>
-            </div>
-            <nav class="footer-nav" aria-label="页脚导航">
-                <a href="index.html">首页</a>
-                <a href="info.html">关于我们</a>
-                <a href="act.html">社团活动</a>
-                <a href="honors.html">竞赛荣誉</a>
-                <a href="ide.html">在线 IDE</a>
-                <a href="contact.html">加入我们</a>
-            </nav>
-        </div>
-        <div class="footer-bottom">
-            &copy; 2026 大连市第二十四中学信息社团 (IT Club of Dalian No.24 High School). All Rights Reserved.
-        </div>
-    </footer>
+main {
+    flex: 1 0 auto;
+}
 
-    <button class="to-top" id="toTop" type="button" aria-label="回到顶部">↑</button>
-    <script src="theme.js"></script>
-</body>
-</html>
+/* 页面底层光晕 */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        radial-gradient(58% 42% at 88% -6%, rgba(79, 172, 254, .16), transparent 62%),
+        radial-gradient(46% 38% at -8% 18%, rgba(0, 242, 254, .12), transparent 60%),
+        linear-gradient(180deg, #f2f6fa 0%, #e9eff6 100%);
+}
+
+h1, h2, h3, h4 {
+    line-height: 1.28;
+    color: var(--ink);
+    font-weight: 700;
+    letter-spacing: -.01em;
+}
+
+/* 全站已统一为浅色玻璃材质：横幅 / 页脚 / 表头不再是深色块，
+   标题统一跟随正文墨色，黑夜模式下由变量自动反白 */
+.topbar h1,
+.topbar h2,
+.topbar h3,
+.topbar h4,
+.hero h1,
+.hero h2,
+.hero h3,
+.hero h4,
+.page-hero h1,
+.page-hero h2,
+.page-hero h3,
+.page-hero h4,
+footer h1,
+footer h2,
+footer h3,
+footer h4,
+thead th {
+    color: var(--ink);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+ul {
+    list-style: none;
+}
+
+::selection {
+    background: rgba(79, 172, 254, .28);
+    color: var(--brand-900);
+}
+
+:focus-visible {
+    outline: 2.5px solid var(--accent-deep);
+    outline-offset: 3px;
+    border-radius: 6px;
+}
+
+/* 细滚动条 */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(79, 172, 254, .6) transparent;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #7dbdf7, #4facfe);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    border-radius: var(--pill);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #4facfe, #00d5e8);
+    background-clip: padding-box;
+}
+
+.skip-link {
+    position: absolute;
+    left: 12px;
+    top: -60px;
+    z-index: 2000;
+    background: var(--brand-800);
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 0 0 12px 12px;
+    font-size: .9rem;
+    transition: top var(--t);
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* 仅供读屏设备 */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ---------- 3. 版式骨架 ---------- */
+.wrap {
+    width: 100%;
+    max-width: var(--maxw);
+    margin-inline: auto;
+    padding-inline: var(--pad);
+}
+
+.section {
+    padding-block: clamp(44px, 7vw, 82px);
+}
+
+.section--tight {
+    padding-block: clamp(26px, 4vw, 44px);
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--accent-deep);
+    background: rgba(79, 172, 254, .1);
+    border: 1px solid rgba(79, 172, 254, .22);
+    padding: 6px 14px;
+    border-radius: var(--pill);
+    margin-bottom: 16px;
+}
+
+.section-title {
+    font-size: clamp(1.5rem, 3.1vw, 2.15rem);
+    color: var(--brand-700);
+    display: inline-block;
+    position: relative;
+    padding-bottom: 14px;
+    margin-bottom: 26px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 54px;
+    height: 5px;
+    border-radius: var(--pill);
+    background: var(--grad-accent);
+    box-shadow: 0 4px 14px rgba(79, 172, 254, .45);
+}
+
+.section-title--center {
+    display: block;
+    text-align: center;
+}
+
+.section-title--center::after {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 72px;
+}
+
+.section-lead {
+    color: var(--ink-2);
+    max-width: 720px;
+    margin-bottom: 26px;
+    font-size: 1.03rem;
+}
+
+/* ---------- 4. 顶部导航 ---------- */
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(9, 24, 31, .82);
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
+    box-shadow: 0 6px 24px rgba(7, 19, 26, .28);
+}
+
+.topbar::after {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    bottom: -1px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(79, 172, 254, .85), rgba(0, 242, 254, .65), transparent);
+    opacity: .7;
+}
+
+.topbar-inner {
+    width: 100%;
+    max-width: var(--maxw);
+    margin-inline: auto;
+    padding: 12px var(--pad);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    min-width: 0;
+}
+
+.brand-mark {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    border-radius: 13px;
+    overflow: hidden;
+    background: var(--grad-accent);
+    display: grid;
+    place-items: center;
+    box-shadow: 0 6px 18px rgba(79, 172, 254, .4), inset 0 0 0 1px rgba(255, 255, 255, .35);
+    transition: transform var(--t), box-shadow var(--t);
+}
+
+.brand:hover .brand-mark {
+    transform: rotate(-5deg) scale(1.06);
+    box-shadow: 0 10px 26px rgba(0, 242, 254, .48), inset 0 0 0 1px rgba(255, 255, 255, .5);
+}
+
+.brand-mark img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.brand-text {
+    min-width: 0;
+}
+
+.brand-text h1,
+.brand-text .brand-title {
+    font-size: clamp(1rem, 1.9vw, 1.2rem);
+    color: #fff;
+    letter-spacing: .3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.brand-text p,
+.brand-text .brand-sub {
+    font-size: .72rem;
+    letter-spacing: .09em;
+    color: #6ec6ff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 汉堡按钮（仅窄屏） */
+.nav-toggle {
+    display: none;
+    width: 44px;
+    height: 40px;
+    border: 1px solid rgba(255, 255, 255, .18);
+    background: rgba(255, 255, 255, .06);
+    border-radius: 12px;
+    cursor: pointer;
+    padding: 0;
+    position: relative;
+    flex-shrink: 0;
+    transition: background var(--t-fast), border-color var(--t-fast);
+}
+
+.nav-toggle:hover {
+    background: rgba(79, 172, 254, .18);
+    border-color: rgba(79, 172, 254, .5);
+}
+
+.nav-toggle span {
+    position: absolute;
+    left: 11px;
+    right: 11px;
+    height: 2px;
+    border-radius: 2px;
+    background: #eaf4ff;
+    transition: transform var(--t), opacity var(--t-fast), width var(--t);
+}
+
+.nav-toggle span:nth-child(1) { top: 13px; }
+.nav-toggle span:nth-child(2) { top: 19px; width: 14px; }
+.nav-toggle span:nth-child(3) { top: 25px; }
+
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+.nav-list {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.nav-list li {
+    position: relative;
+}
+
+.nav-link {
+    display: block;
+    padding: 9px 15px;
+    border-radius: var(--pill);
+    color: rgba(255, 255, 255, .82);
+    font-size: .95rem;
+    font-weight: 600;
+    letter-spacing: .2px;
+    position: relative;
+    transition: color var(--t-fast), background var(--t-fast), transform var(--t-fast);
+}
+
+.nav-link:hover {
+    color: #fff;
+    background: rgba(79, 172, 254, .16);
+}
+
+.nav-link small {
+    display: block;
+    font-size: .62rem;
+    font-weight: 500;
+    letter-spacing: .08em;
+    opacity: .6;
+    text-transform: uppercase;
+    margin-top: -2px;
+}
+
+.nav-link.is-active {
+    color: #04222e;
+    background: var(--grad-accent);
+    box-shadow: var(--sh-accent);
+}
+
+.nav-link.is-active small {
+    opacity: .75;
+}
+
+/* ---------- 5. 按钮 ---------- */
+.btn {
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    padding: 13px 30px;
+    border: 0;
+    border-radius: var(--pill);
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: .3px;
+    color: #fff;
+    cursor: pointer;
+    isolation: isolate;
+    transition: transform var(--t), box-shadow var(--t), filter var(--t);
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(110deg, transparent 20%, rgba(255, 255, 255, .42) 45%, transparent 70%);
+    transform: translateX(-115%);
+    transition: transform .7s var(--ease);
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+}
+
+.btn:hover::after {
+    transform: translateX(115%);
+}
+
+.btn:active {
+    transform: translateY(-1px) scale(.985);
+}
+
+.btn-primary {
+    background: var(--grad-accent);
+    box-shadow: var(--sh-accent);
+    color: #03222e;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 16px 34px rgba(0, 242, 254, .42);
+}
+
+.btn-amber {
+    background: var(--grad-amber);
+    box-shadow: var(--sh-amber);
+    color: #3a2200;
+}
+
+.btn-amber:hover {
+    box-shadow: 0 16px 34px rgba(243, 156, 18, .4);
+}
+
+.btn-ghost {
+    background: rgba(255, 255, 255, .1);
+    border: 1px solid rgba(255, 255, 255, .32);
+    color: #fff;
+    backdrop-filter: blur(6px);
+}
+
+.btn-ghost:hover {
+    background: rgba(255, 255, 255, .2);
+}
+
+.btn-outline {
+    background: var(--surface);
+    color: var(--accent-deep);
+    border: 1.5px solid rgba(79, 172, 254, .5);
+    box-shadow: var(--sh-1);
+}
+
+.btn-outline:hover {
+    background: rgba(79, 172, 254, .08);
+    border-color: var(--accent);
+}
+
+.btn-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: center;
+}
+
+/* ---------- 6. 首页 Hero（透明融入极光壁纸的玻璃横幅） ---------- */
+.hero {
+    --hero-grad: linear-gradient(96deg, #0a63b5 0%, #2a94e6 46%, #00b6cc 100%);
+    position: relative;
+    overflow: hidden;
+    background: transparent;
+    color: var(--ink);
+    padding: clamp(72px, 12vw, 150px) var(--pad) clamp(64px, 10vw, 128px);
+    text-align: center;
+    isolation: isolate;
+}
+
+/* 柔光斑：浅色壁纸上收淡浓度，blur 放大更透气 */
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: -30% -12%;
+    z-index: -2;
+    background:
+        radial-gradient(38% 46% at 18% 26%, rgba(79, 172, 254, .22), transparent 66%),
+        radial-gradient(34% 42% at 82% 18%, rgba(0, 242, 254, .14), transparent 66%),
+        radial-gradient(40% 50% at 62% 96%, rgba(26, 127, 224, .16), transparent 68%);
+    filter: blur(30px);
+    animation: drift 22s ease-in-out infinite alternate;
+}
+
+@keyframes drift {
+    from { transform: translate3d(-2%, -1%, 0) scale(1); }
+    to { transform: translate3d(3%, 2%, 0) scale(1.08); }
+}
+
+/* 细网格：浅色底改用极淡墨蓝线 */
+.hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image:
+        linear-gradient(rgba(28, 62, 90, .05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(28, 62, 90, .05) 1px, transparent 1px);
+    background-size: 58px 58px;
+    mask-image: radial-gradient(78% 76% at 50% 42%, #000 32%, transparent 100%);
+    -webkit-mask-image: radial-gradient(78% 76% at 50% 42%, #000 32%, transparent 100%);
+}
+
+.hero .eyebrow {
+    color: var(--accent-deep);
+    background: rgba(255, 255, 255, .5);
+    border: 1px solid rgba(255, 255, 255, .85);
+    backdrop-filter: saturate(160%) blur(12px);
+    -webkit-backdrop-filter: saturate(160%) blur(12px);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .9), 0 6px 16px rgba(28, 62, 90, .08);
+}
+
+/* 社名为主，校名作引题小字收在大标题上方 */
+.hero h2 {
+    color: var(--ink);
+    font-size: clamp(2.4rem, 6.4vw, 4.4rem);
+    font-weight: 800;
+    letter-spacing: .06em;
+    margin-bottom: 34px;
+    text-shadow: 0 12px 34px rgba(79, 172, 254, .16);
+}
+
+.hero h2 .hero-school {
+    display: block;
+    font-size: clamp(.9rem, 1.9vw, 1.12rem);
+    font-weight: 500;
+    letter-spacing: .3em;
+    text-indent: .3em;
+    color: var(--muted);
+    margin-bottom: 16px;
+}
+
+.hero .btn-row {
+    margin-top: 4px;
+}
+
+.hero h2 .grad {
+    background: var(--hero-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+.hero p {
+    font-size: clamp(1rem, 2.2vw, 1.28rem);
+    color: var(--ink-2);
+    max-width: 640px;
+    margin: 0 auto 34px;
+}
+
+.hero-fade {
+    opacity: 0;
+    transform: translateY(26px);
+    animation: riseIn .95s var(--ease) forwards;
+}
+
+.hero-fade:nth-child(2) { animation-delay: .06s; }
+.hero-fade:nth-child(3) { animation-delay: .16s; }
+.hero-fade:nth-child(4) { animation-delay: .26s; }
+.hero-fade:nth-child(5) { animation-delay: .36s; }
+
+@keyframes riseIn {
+    to { opacity: 1; transform: none; }
+}
+
+/* 弧形收边不再需要：横幅与页面共用同一张壁纸 */
+.hero-curve {
+    display: none;
+}
+
+/* ---------- 7. 通用卡片 ---------- */
+.grid {
+    display: grid;
+    gap: clamp(18px, 2.4vw, 28px);
+}
+
+.grid--3 {
+    grid-template-columns: repeat(auto-fit, minmax(258px, 1fr));
+}
+
+.grid--4 {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.card {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    padding: clamp(24px, 3vw, 34px) clamp(20px, 2.4vw, 28px);
+    box-shadow: var(--sh-2);
+    overflow: hidden;
+    transition: transform var(--t), box-shadow var(--t), border-color var(--t);
+}
+
+/* 顶部渐变描边 */
+.card::before {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    height: 3px;
+    background: var(--grad-accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--t-slow);
+}
+
+.card::after {
+    content: '';
+    position: absolute;
+    width: 210px;
+    height: 210px;
+    right: -110px;
+    top: -110px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(79, 172, 254, .16), transparent 68%);
+    opacity: 0;
+    transition: opacity var(--t);
+    pointer-events: none;
+}
+
+.card:hover {
+    transform: translateY(-9px);
+    border-color: rgba(79, 172, 254, .42);
+    box-shadow: var(--sh-3);
+}
+
+.card:hover::before {
+    transform: scaleX(1);
+}
+
+.card:hover::after {
+    opacity: 1;
+}
+
+.card-icon {
+    width: 62px;
+    height: 62px;
+    display: grid;
+    place-items: center;
+    font-size: 1.55rem;
+    font-weight: 800;
+    letter-spacing: .01em;
+    color: var(--accent-deep);
+    line-height: 1;
+    border-radius: 18px;
+    margin-bottom: 18px;
+    background: linear-gradient(150deg, rgba(79, 172, 254, .2), rgba(0, 242, 254, .1));
+    border: 1px solid rgba(79, 172, 254, .26);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .8);
+    transition: transform var(--t), box-shadow var(--t);
+}
+
+.card:hover .card-icon {
+    transform: translateY(-3px) scale(1.05) rotate(-4deg);
+    box-shadow: 0 10px 22px rgba(79, 172, 254, .28), inset 0 1px 0 rgba(255, 255, 255, .9);
+}
+
+.card h3 {
+    font-size: 1.18rem;
+    color: var(--brand-700);
+    margin-bottom: 11px;
+}
+
+.card p {
+    color: var(--muted);
+    font-size: .95rem;
+}
+
+/* ---------- 8. 预备队说明块 ---------- */
+.callout {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 5px solid transparent;
+    border-image: linear-gradient(180deg, #4facfe, #00f2fe) 1;
+    border-radius: var(--r-md);
+    padding: clamp(20px, 3vw, 30px) clamp(22px, 3.4vw, 34px);
+    box-shadow: var(--sh-2);
+    max-width: 860px;
+    margin-inline: auto;
+    color: var(--ink-2);
+    font-size: 1.03rem;
+    line-height: 1.9;
+}
+
+.callout strong {
+    color: var(--brand-800);
+}
+
+.callout .hl {
+    color: var(--accent-deep);
+    font-weight: 800;
+    background: linear-gradient(transparent 62%, rgba(0, 242, 254, .34) 0);
+    padding: 0 2px;
+}
+
+.callout .note {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: .93rem;
+    color: var(--muted);
+}
+
+.pill-note {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 22px;
+    padding: 9px 22px;
+    border-radius: var(--pill);
+    background: linear-gradient(135deg, rgba(79, 172, 254, .16), rgba(0, 242, 254, .1));
+    color: var(--ink-2);
+    font-size: .92rem;
+    font-weight: 600;
+    letter-spacing: .3px;
+    box-shadow: var(--sh-1), var(--glass-hi);
+}
+
+.pill-note span {
+    font-size: .8rem;
+    font-weight: 800;
+    color: var(--accent-deep);
+    text-transform: uppercase;
+    letter-spacing: .1em;
+}
+
+/* ---------- 9. 友链 ---------- */
+.friend-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: center;
+}
+
+.friend-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 26px;
+    border-radius: var(--pill);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--brand-700);
+    background: var(--surface);
+    border: 1.5px solid rgba(79, 172, 254, .4);
+    box-shadow: var(--sh-1);
+    transition: all var(--t);
+}
+
+.friend-links a .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--grad-accent);
+    box-shadow: 0 0 0 3px rgba(79, 172, 254, .2);
+}
+
+.friend-links a:hover {
+    color: #03222e;
+    background: var(--grad-accent);
+    transform: translateY(-3px);
+    box-shadow: var(--sh-accent);
+}
+
+.friend-links a:hover .dot {
+    background: #03222e;
+    box-shadow: 0 0 0 3px rgba(3, 34, 46, .18);
+}
+
+/* ---------- 10. 内页横幅（透明融入极光壁纸，与首页 Hero 同一语言） ---------- */
+.page-hero {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    background: transparent;
+    color: var(--ink);
+    text-align: center;
+    padding: clamp(46px, 8vw, 86px) var(--pad) clamp(42px, 7vw, 76px);
+}
+
+.page-hero::before {
+    content: '';
+    position: absolute;
+    inset: -40% -10%;
+    z-index: -2;
+    background:
+        radial-gradient(32% 44% at 22% 34%, rgba(79, 172, 254, .2), transparent 68%),
+        radial-gradient(30% 40% at 78% 22%, rgba(0, 242, 254, .12), transparent 68%);
+    filter: blur(30px);
+    animation: drift 26s ease-in-out infinite alternate;
+}
+
+.page-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image:
+        linear-gradient(rgba(28, 62, 90, .05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(28, 62, 90, .05) 1px, transparent 1px);
+    background-size: 46px 46px;
+    mask-image: linear-gradient(180deg, #000, transparent 92%);
+    -webkit-mask-image: linear-gradient(180deg, #000, transparent 92%);
+}
+
+.page-hero h2 {
+    font-size: clamp(1.75rem, 4.6vw, 2.95rem);
+    font-weight: 800;
+    letter-spacing: -.02em;
+    margin-bottom: 12px;
+    text-shadow: 0 10px 30px rgba(79, 172, 254, .14);
+}
+
+.page-hero p {
+    font-size: clamp(.98rem, 1.9vw, 1.18rem);
+    color: var(--ink-2);
+    max-width: 700px;
+    margin-inline: auto;
+}
+
+.breadcrumb {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-size: .8rem;
+    letter-spacing: .04em;
+    color: var(--muted);
+    margin-bottom: 18px;
+    padding: 5px 14px;
+    border-radius: var(--pill);
+    background: rgba(255, 255, 255, .5);
+    border: 1px solid rgba(255, 255, 255, .85);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .9);
+    backdrop-filter: saturate(160%) blur(12px);
+    -webkit-backdrop-filter: saturate(160%) blur(12px);
+}
+
+.breadcrumb a:hover {
+    color: var(--accent-deep);
+    text-decoration: underline;
+}
+
+/* ---------- 11. 内容容器 ---------- */
+.content {
+    width: 100%;
+    max-width: var(--maxw);
+    margin-inline: auto;
+    padding: clamp(38px, 6vw, 68px) var(--pad) clamp(30px, 5vw, 56px);
+}
+
+.block + .block {
+    margin-top: clamp(38px, 6vw, 60px);
+}
+
+/* ---------- 12. 关于我们：两栏 ---------- */
+.split {
+    display: grid;
+    grid-template-columns: minmax(0, 1.75fr) minmax(240px, 1fr);
+    gap: clamp(24px, 3.4vw, 44px);
+    align-items: start;
+}
+
+.prose p {
+    margin-bottom: 17px;
+    font-size: 1.05rem;
+    color: var(--ink-2);
+}
+
+.prose strong {
+    color: var(--brand-800);
+}
+
+.prose .fine {
+    font-size: .92rem;
+    color: var(--muted);
+    padding-left: 16px;
+    border-left: 3px solid rgba(79, 172, 254, .45);
+}
+
+/* 速览卡 */
+.facts {
+    position: sticky;
+    top: 96px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    padding: 26px 24px;
+    box-shadow: var(--sh-2);
+    overflow: hidden;
+}
+
+.facts::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    background: var(--grad-accent);
+}
+
+.facts h3 {
+    font-size: 1.15rem;
+    color: var(--brand-700);
+    margin-bottom: 16px;
+}
+
+.facts li {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    padding: 11px 0;
+    border-bottom: 1px dashed var(--line);
+    font-size: .94rem;
+    color: var(--ink-2);
+}
+
+.facts li:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+}
+
+.facts li .i {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--grad-accent);
+    box-shadow: 0 0 0 3px rgba(79, 172, 254, .18);
+    flex-shrink: 0;
+    margin-top: 7px;
+}
+
+/* 价值观 */
+.values {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(158px, 1fr));
+    gap: clamp(14px, 2vw, 22px);
+}
+
+.value {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    padding: 24px 16px 20px;
+    text-align: center;
+    box-shadow: var(--sh-1);
+    transition: transform var(--t), border-color var(--t), box-shadow var(--t);
+}
+
+.value:hover {
+    transform: translateY(-6px);
+    border-color: rgba(79, 172, 254, .45);
+    box-shadow: var(--sh-3);
+}
+
+.value .icon {
+    width: 11px;
+    height: 11px;
+    display: block;
+    margin: 0 auto 14px;
+    border-radius: 50%;
+    background: var(--grad-accent);
+    box-shadow: 0 0 0 4px rgba(79, 172, 254, .16);
+    transition: transform var(--t);
+}
+
+.value:hover .icon {
+    transform: scale(1.25);
+}
+
+.value h4 {
+    font-size: 1.03rem;
+    color: var(--brand-700);
+}
+
+/* 里程碑 */
+.milestones {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(212px, 1fr));
+    gap: clamp(14px, 2vw, 22px);
+}
+
+.milestone {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    padding: 22px 22px 22px 26px;
+    box-shadow: var(--sh-1);
+    overflow: hidden;
+    transition: transform var(--t), box-shadow var(--t);
+}
+
+.milestone::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--grad-accent);
+    transform: scaleY(.34);
+    transform-origin: top;
+    transition: transform var(--t-slow);
+}
+
+.milestone:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--sh-3);
+}
+
+.milestone:hover::before {
+    transform: scaleY(1);
+}
+
+.milestone .date {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-weight: 800;
+    font-size: .96rem;
+    letter-spacing: .04em;
+    color: var(--accent-deep);
+    margin-bottom: 7px;
+}
+
+.milestone p {
+    font-size: .93rem;
+    color: var(--ink-2);
+}
+
+/* ---------- 13. 图片卡 ---------- */
+.photos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(272px, 1fr));
+    gap: clamp(16px, 2.2vw, 26px);
+}
+
+.photo {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    box-shadow: var(--sh-2);
+    transition: transform var(--t), box-shadow var(--t);
+}
+
+.photo:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--sh-3);
+}
+
+.photo img {
+    width: 100%;
+    height: 228px;
+    object-fit: cover;
+    background: #e9eef3;
+    transition: transform .8s var(--ease);
+}
+
+.photo:hover img {
+    transform: scale(1.055);
+}
+
+.photo figcaption {
+    padding: 13px 18px;
+    font-size: .9rem;
+    color: var(--ink-2);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-top: 1px solid var(--line);
+}
+
+.photo figcaption::before {
+    content: '';
+    width: 16px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--grad-accent);
+    flex-shrink: 0;
+}
+
+.photo .zoom-hint {
+    position: absolute;
+    right: 14px;
+    top: 14px;
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    font-size: .9rem;
+    color: #fff;
+    background: rgba(9, 24, 31, .5);
+    backdrop-filter: blur(6px);
+    opacity: 0;
+    transform: scale(.8);
+    transition: all var(--t);
+}
+
+.photo:hover .zoom-hint {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.photo--wide img {
+    height: 300px;
+}
+
+/* ---------- 14. 链接卡（公众号报道）---------- */
+.link-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    padding: 22px 24px;
+    box-shadow: var(--sh-1);
+    position: relative;
+    overflow: hidden;
+    transition: transform var(--t), box-shadow var(--t), border-color var(--t);
+}
+
+.link-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    background: var(--grad-accent);
+    opacity: .85;
+}
+
+.link-card:hover {
+    transform: translateX(6px);
+    border-color: rgba(79, 172, 254, .4);
+    box-shadow: var(--sh-3);
+}
+
+.link-card .school-logo {
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+    object-fit: contain;
+    border-radius: 14px;
+    padding: 6px;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    transition: transform var(--t);
+}
+
+.link-card:hover .school-logo {
+    transform: scale(1.07);
+}
+
+.link-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.link-body a {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--brand-800);
+    transition: color var(--t-fast);
+}
+
+.link-body a:hover {
+    color: var(--accent-deep);
+}
+
+.link-body a .meta {
+    font-size: .82rem;
+    font-weight: 500;
+    color: var(--muted);
+    font-family: var(--font-mono);
+}
+
+.link-body a .ext {
+    color: var(--accent-deep);
+    transition: transform var(--t);
+    display: inline-block;
+}
+
+.link-body a:hover .ext {
+    transform: translate(3px, -3px);
+}
+
+.link-body .desc {
+    margin-top: 8px;
+    font-size: .94rem;
+    color: var(--muted);
+}
+
+.stack > * + * {
+    margin-top: 16px;
+}
+
+/* ---------- 15. 行动号召卡 ---------- */
+.cta-card {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 22px;
+    padding: clamp(24px, 3.2vw, 34px) clamp(24px, 3.4vw, 38px);
+    border-radius: var(--r-lg);
+    border: 1px solid var(--line);
+    background:
+        radial-gradient(120% 160% at 100% 0%, rgba(79, 172, 254, .13), transparent 58%),
+        var(--surface);
+    box-shadow: var(--sh-2);
+    position: relative;
+    overflow: hidden;
+    transition: transform var(--t), box-shadow var(--t);
+}
+
+.cta-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--sh-3);
+}
+
+.cta-card .cta-info {
+    flex: 1 1 320px;
+    min-width: 0;
+}
+
+.cta-card .cta-info strong {
+    display: block;
+    font-size: 1.16rem;
+    color: var(--brand-700);
+    margin-bottom: 6px;
+}
+
+.cta-card .cta-info p {
+    font-size: .93rem;
+    color: var(--muted);
+}
+
+/* ---------- 16. 荣誉表格 ---------- */
+.table-wrap {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    box-shadow: var(--sh-2);
+    overflow: hidden;
+}
+
+.table-scroll {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: .99rem;
+    min-width: 540px;
+}
+
+thead th {
+    background: linear-gradient(180deg, rgba(79, 172, 254, .16), rgba(79, 172, 254, .07));
+    color: var(--brand-700);
+    text-align: left;
+    font-weight: 700;
+    letter-spacing: .04em;
+    font-size: .9rem;
+    padding: 16px 22px;
+    white-space: nowrap;
+}
+
+thead th:first-child {
+    padding-left: 26px;
+}
+
+tbody tr {
+    border-top: 1px solid var(--line);
+    transition: background var(--t-fast);
+}
+
+tbody tr:nth-child(even) {
+    background: var(--surface-2);
+}
+
+tbody tr:hover {
+    background: rgba(79, 172, 254, .09);
+}
+
+tbody tr.is-top {
+    background: linear-gradient(90deg, rgba(243, 156, 18, .1), rgba(79, 172, 254, .07));
+}
+
+tbody td {
+    padding: 16px 22px;
+    color: var(--ink-2);
+    vertical-align: middle;
+}
+
+tbody td:first-child {
+    padding-left: 26px;
+    font-family: var(--font-mono);
+    font-weight: 800;
+    color: var(--brand-800);
+    white-space: nowrap;
+}
+
+tbody td:last-child {
+    padding-right: 26px;
+}
+
+.honor-icon {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--grad-accent);
+    margin-right: 10px;
+    vertical-align: 2px;
+}
+
+.badge {
+    display: inline-block;
+    font-size: .74rem;
+    font-weight: 800;
+    letter-spacing: .05em;
+    padding: 5px 13px;
+    border-radius: var(--pill);
+    white-space: nowrap;
+    border: 1px solid transparent;
+}
+
+.badge-regular {
+    color: #0a4b78;
+    background: rgba(79, 172, 254, .16);
+    border-color: rgba(79, 172, 254, .34);
+}
+
+.badge-gold {
+    color: #7a5100;
+    background: rgba(243, 156, 18, .18);
+    border-color: rgba(243, 156, 18, .4);
+}
+
+.badge-silver {
+    color: #47586a;
+    background: rgba(120, 144, 163, .17);
+    border-color: rgba(120, 144, 163, .36);
+}
+
+.badge-bronze {
+    color: #2a1400;
+    background: linear-gradient(135deg, #cd7f32, #e8a765);
+    border-color: rgba(205, 127, 50, .55);
+    box-shadow: 0 5px 14px rgba(205, 127, 50, .3);
+}
+
+/* ---------- 17. 联系方式卡 ---------- */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(238px, 1fr));
+    gap: clamp(18px, 2.6vw, 32px);
+}
+
+.contact-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    padding: 28px 22px 24px;
+    text-align: center;
+    box-shadow: var(--sh-2);
+    position: relative;
+    overflow: hidden;
+    transition: transform var(--t), box-shadow var(--t), border-color var(--t);
+}
+
+.contact-card::before {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    height: 84px;
+    background: linear-gradient(180deg, rgba(79, 172, 254, .14), transparent);
+    pointer-events: none;
+}
+
+.contact-card:hover {
+    transform: translateY(-9px);
+    border-color: rgba(79, 172, 254, .42);
+    box-shadow: var(--sh-3);
+}
+
+.contact-card .avatar {
+    width: 70px;
+    height: 70px;
+    display: grid;
+    place-items: center;
+    margin: 0 auto 14px;
+    font-size: 2.1rem;
+    line-height: 1;
+    border-radius: 50%;
+    background: var(--grad-accent);
+    color: #03222e;
+    box-shadow: 0 10px 24px rgba(79, 172, 254, .38), inset 0 0 0 4px rgba(255, 255, 255, .82);
+    position: relative;
+    transition: transform var(--t);
+}
+
+.contact-card:hover .avatar {
+    transform: translateY(-3px) scale(1.05);
+}
+
+.contact-card h3 {
+    font-size: 1.16rem;
+    color: var(--brand-700);
+}
+
+.contact-card .role {
+    font-size: .88rem;
+    font-weight: 700;
+    color: var(--accent-deep);
+    margin: 3px 0 16px;
+    letter-spacing: .02em;
+}
+
+.qr-frame {
+    position: relative;
+    display: inline-block;
+    padding: 12px;
+    border-radius: var(--r-md);
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    box-shadow: inset 0 1px 3px rgba(11, 27, 36, .05);
+    transition: transform var(--t);
+}
+
+/* 四角取景框 */
+.qr-frame::before,
+.qr-frame::after {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border: 2.5px solid var(--accent);
+    border-radius: 3px;
+    opacity: 0;
+    transition: opacity var(--t), transform var(--t);
+}
+
+.qr-frame::before {
+    left: 4px;
+    top: 4px;
+    border-right: 0;
+    border-bottom: 0;
+}
+
+.qr-frame::after {
+    right: 4px;
+    bottom: 4px;
+    border-left: 0;
+    border-top: 0;
+}
+
+.contact-card:hover .qr-frame::before,
+.contact-card:hover .qr-frame::after {
+    opacity: 1;
+}
+
+.qr-frame img {
+    width: 158px;
+    height: 158px;
+    object-fit: cover;
+    border-radius: 10px;
+    background: #fff;
+    cursor: zoom-in;
+    transition: transform var(--t);
+}
+
+.contact-card:hover .qr-frame img {
+    transform: scale(1.02);
+}
+
+.qr-label {
+    font-size: .82rem;
+    color: var(--muted);
+    margin-top: 11px;
+    letter-spacing: .02em;
+}
+
+.contact-card .desc {
+    font-size: .9rem;
+    color: var(--ink-2);
+    margin-top: 9px;
+    padding-top: 9px;
+    border-top: 1px dashed var(--line);
+    font-weight: 600;
+}
+
+/* ---------- 18. 通知框 ---------- */
+.notice {
+    background:
+        radial-gradient(120% 180% at 100% 0%, rgba(0, 242, 254, .12), transparent 60%),
+        var(--surface);
+    border: 1px solid rgba(79, 172, 254, .3);
+    border-radius: var(--r-md);
+    padding: 22px 26px;
+    margin-top: 26px;
+    box-shadow: var(--sh-1);
+    color: var(--ink-2);
+    font-size: .99rem;
+    line-height: 1.85;
+}
+
+.notice strong {
+    color: var(--brand-800);
+}
+
+.figure-img {
+    margin-top: 26px;
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    border: 1px solid var(--line);
+    box-shadow: var(--sh-2);
+}
+
+/* ---------- 19. 页脚（浅色磨砂玻璃面板，与全站统一） ---------- */
+footer {
+    flex-shrink: 0;
+    margin: clamp(30px, 5vw, 56px) clamp(10px, 3vw, 26px) clamp(14px, 2.4vw, 22px);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, .5), rgba(255, 255, 255, .22)),
+        var(--surface);
+    color: var(--muted);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, .8);
+    border-radius: var(--r-lg);
+    -webkit-backdrop-filter: saturate(170%) blur(20px);
+    backdrop-filter: saturate(170%) blur(20px);
+    box-shadow: var(--sh-2), var(--glass-hi);
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(79, 172, 254, .55), rgba(0, 242, 254, .4), transparent);
+}
+
+.footer-inner {
+    width: 100%;
+    max-width: var(--maxw);
+    margin-inline: auto;
+    padding: clamp(26px, 4vw, 40px) var(--pad) clamp(22px, 3.4vw, 32px);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px 32px;
+}
+
+.footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.footer-brand .brand-mark {
+    width: 38px;
+    height: 38px;
+    border-radius: 11px;
+}
+
+.footer-brand strong {
+    display: block;
+    color: var(--brand-700);
+    font-size: .98rem;
+    letter-spacing: .2px;
+}
+
+.footer-brand small {
+    display: block;
+    font-size: .7rem;
+    letter-spacing: .1em;
+    color: var(--accent-deep);
+}
+
+.footer-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 18px;
+    font-size: .88rem;
+}
+
+.footer-nav a {
+    color: var(--ink-2);
+    transition: color var(--t-fast);
+}
+
+.footer-nav a:hover {
+    color: var(--accent-deep);
+}
+
+.footer-bottom {
+    border-top: 1px solid var(--line);
+    padding: 15px var(--pad) 17px;
+    text-align: center;
+    font-size: .84rem;
+    color: var(--muted);
+    letter-spacing: .02em;
+}
+
+/* ---------- 20. 阅读进度 / 回到顶部 ---------- */
+.progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    transform: scaleX(0);
+    transform-origin: left;
+    background: var(--grad-accent);
+    box-shadow: 0 0 12px rgba(0, 242, 254, .6);
+    z-index: 1200;
+    pointer-events: none;
+}
+
+.to-top {
+    position: fixed;
+    right: 22px;
+    bottom: 24px;
+    width: 46px;
+    height: 46px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, .5);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .78);
+    backdrop-filter: blur(10px);
+    color: var(--brand-700);
+    font-size: 1.05rem;
+    cursor: pointer;
+    box-shadow: var(--sh-2);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(14px);
+    transition: all var(--t);
+    z-index: 1150;
+}
+
+.to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+}
+
+.to-top:hover {
+    background: var(--grad-accent);
+    color: #03222e;
+    transform: translateY(-3px);
+    box-shadow: var(--sh-accent);
+}
+
+/* ---------- 21. 图片预览 ---------- */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: grid;
+    place-items: center;
+    padding: 5vw;
+    background: rgba(6, 16, 21, .86);
+    backdrop-filter: blur(10px);
+    cursor: zoom-out;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--t), visibility var(--t);
+}
+
+.lightbox.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox img {
+    max-width: 100%;
+    max-height: 88vh;
+    border-radius: var(--r-md);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, .55);
+    transform: scale(.94);
+    transition: transform var(--t);
+    background: #fff;
+}
+
+.lightbox.open img {
+    transform: scale(1);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, .3);
+    background: rgba(255, 255, 255, .1);
+    color: #fff;
+    font-size: 1.3rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: all var(--t-fast);
+}
+
+.lightbox-close:hover {
+    background: rgba(255, 255, 255, .26);
+    transform: rotate(90deg);
+}
+
+/* ---------- 22. 滚动入场动效 ---------- */
+html.js .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+}
+
+html.js .reveal.in {
+    opacity: 1;
+    transform: none;
+    transition: opacity .7s var(--ease), transform .7s var(--ease);
+}
+
+html.js .reveal-in {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+html.js .reveal-in.in {
+    opacity: 1;
+    transform: none;
+    transition: opacity .6s var(--ease), transform .6s var(--ease);
+    transition-delay: var(--d, 0s);
+}
+
+/* =========================================================
+   23. 在线 IDE 页（body.ide-page）
+   ========================================================= */
+body.ide-page {
+    height: 100vh;
+    overflow: hidden;
+}
+
+body.ide-page::before {
+    display: none;
+}
+
+/* 保持定位基准，保证窄屏下拉菜单位置正确 */
+body.ide-page .topbar {
+    position: relative;
+    flex-shrink: 0;
+}
+
+body.ide-page .progress,
+body.ide-page .to-top {
+    display: none;
+}
+
+body.ide-page .topbar-inner {
+    padding-block: 9px;
+    flex-wrap: wrap;
+}
+
+body.ide-page .nav-link {
+    font-size: .9rem;
+    padding: 7px 13px;
+}
+
+body.ide-page .brand-mark {
+    width: 40px;
+    height: 40px;
+}
+
+:root {
+    --ide-bg: #0b1920;
+    --ide-panel: #12242c;
+    --ide-bar: #19313b;
+    --ide-line: #24424f;
+    --ide-text: #dcecf4;
+    --ide-dim: #8aa7b4;
+}
+
+body.ide-page .page-hero {
+    flex-shrink: 0;
+    padding: clamp(16px, 2.6vw, 26px) var(--pad);
+    border-bottom: 1px solid rgba(255, 255, 255, .1);
+    background: linear-gradient(180deg, rgba(255, 255, 255, .05), transparent);
+}
+
+body.ide-page .page-hero h2 {
+    font-size: clamp(1.2rem, 3vw, 1.9rem);
+    margin-bottom: 2px;
+}
+
+body.ide-page .page-hero p {
+    font-size: .95rem;
+    font-family: var(--font-mono);
+    color: var(--ink-2);
+}
+
+.ide-container {
+    flex: 1;
+    width: 100%;
+    max-width: 1440px;
+    margin-inline: auto;
+    padding: clamp(12px, 1.6vw, 18px) clamp(12px, 1.8vw, 22px) clamp(14px, 1.8vw, 20px);
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.ide-main {
+    flex: 1;
+    display: flex;
+    gap: clamp(12px, 1.5vw, 18px);
+    min-height: 0;
+}
+
+.ide-panel {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+    background: var(--ide-panel);
+    border: 1px solid rgba(255, 255, 255, .07);
+    border-radius: var(--r-md);
+    overflow: hidden;
+    box-shadow: 0 18px 40px rgba(6, 16, 21, .38);
+}
+
+.left-panel {
+    flex: 1 1 50%;
+}
+
+.right-panel {
+    flex: 1 1 50%;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(12px, 1.5vw, 18px);
+    min-width: 0;
+    min-height: 0;
+}
+
+.ide-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-shrink: 0;
+    background: var(--ide-bar);
+    border-bottom: 1px solid var(--ide-line);
+    padding: 9px 16px;
+    color: var(--ide-text);
+    font-size: .84rem;
+    font-weight: 600;
+    letter-spacing: .02em;
+}
+
+.ide-bar .title {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    white-space: nowrap;
+}
+
+.ide-dots {
+    display: inline-flex;
+    gap: 6px;
+    margin-right: 4px;
+}
+
+.ide-dots i {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #3f5c68;
+}
+
+.ide-dots i:nth-child(1) { background: #ff5f57; }
+.ide-dots i:nth-child(2) { background: #febc2e; }
+.ide-dots i:nth-child(3) { background: #28c840; }
+
+.lang {
+    background: rgba(79, 172, 254, .16);
+    border: 1px solid rgba(79, 172, 254, .38);
+    color: #9fdcff;
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    padding: 3px 12px;
+    border-radius: var(--pill);
+    white-space: nowrap;
+}
+
+.ide-bar small {
+    color: var(--ide-dim);
+    font-size: .74rem;
+    font-weight: 500;
+}
+
+.editor-body {
+    flex: 1;
+    position: relative;
+    min-height: 0;
+}
+
+#editor {
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    font-family: var(--font-mono);
+}
+
+.ace_editor {
+    cursor: text !important;
+}
+
+.control-bar {
+    flex-shrink: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 11px;
+    background: var(--ide-bar);
+    border-top: 1px solid var(--ide-line);
+    padding: 11px 14px;
+}
+
+.btn-run {
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 0;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: .94rem;
+    font-weight: 800;
+    letter-spacing: .03em;
+    color: #03222e;
+    background: var(--grad-accent);
+    padding: 9px 28px;
+    border-radius: var(--pill);
+    box-shadow: var(--sh-accent);
+    transition: transform var(--t-fast), box-shadow var(--t-fast), filter var(--t-fast);
+}
+
+.btn-run::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 20%, rgba(255, 255, 255, .5) 45%, transparent 70%);
+    transform: translateX(-115%);
+    transition: transform .65s var(--ease);
+}
+
+.btn-run:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(0, 242, 254, .44);
+}
+
+.btn-run:hover:not(:disabled)::after {
+    transform: translateX(115%);
+}
+
+.btn-run:active:not(:disabled) {
+    transform: scale(.97);
+}
+
+.btn-run:disabled {
+    opacity: .55;
+    cursor: not-allowed;
+}
+
+.btn-clear {
+    flex-shrink: 0;
+    border: 1px solid var(--ide-line);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: .85rem;
+    font-weight: 600;
+    color: var(--ide-text);
+    background: rgba(255, 255, 255, .05);
+    padding: 8px 18px;
+    border-radius: var(--pill);
+    transition: all var(--t-fast);
+}
+
+.btn-clear:hover {
+    background: rgba(255, 255, 255, .13);
+    border-color: rgba(255, 255, 255, .3);
+    transform: translateY(-1px);
+}
+
+.example-select {
+    flex-shrink: 0;
+    font-family: inherit;
+    font-size: .85rem;
+    color: var(--ide-text);
+    background: rgba(255, 255, 255, .05);
+    border: 1px solid var(--ide-line);
+    border-radius: 12px;
+    padding: 8px 12px;
+    cursor: pointer;
+    outline: none;
+    transition: all var(--t-fast);
+}
+
+.example-select:hover,
+.example-select:focus {
+    border-color: var(--accent);
+    background: rgba(79, 172, 254, .1);
+}
+
+.example-select option {
+    background: var(--ide-bar);
+    color: var(--ide-text);
+}
+
+.status-indicator {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--ide-dim);
+    font-size: .84rem;
+    white-space: nowrap;
+}
+
+.status-indicator .spinner {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border: 2px solid var(--ide-line);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin .8s linear infinite;
+    visibility: hidden;
+    flex-shrink: 0;
+}
+
+.status-indicator .spinner.active {
+    visibility: visible;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.input-wrapper,
+.output-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    background: var(--ide-panel);
+    border: 1px solid rgba(255, 255, 255, .07);
+    border-radius: var(--r-md);
+    overflow: hidden;
+    box-shadow: 0 18px 40px rgba(6, 16, 21, .38);
+}
+
+#stdin {
+    flex: 1;
+    width: 100%;
+    min-height: 0;
+    border: 0;
+    outline: none;
+    resize: none;
+    padding: 13px 16px;
+    background: var(--ide-panel);
+    color: var(--ide-text);
+    font-family: var(--font-mono);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+#stdin::placeholder {
+    color: #5d7b88;
+}
+
+.output-body {
+    flex: 1;
+    min-height: 0;
+    padding: 14px 18px;
+    overflow-y: auto;
+    background: var(--ide-panel);
+    color: var(--ide-text);
+    font-family: var(--font-mono);
+    font-size: 14px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+.output-body .error { color: #ff9d8e; }
+.output-body .success { color: #8fe39d; }
+.output-body .info { color: #86ccff; }
+.output-body .empty { color: #96b3c1; font-style: italic; }
+
+.output-body::-webkit-scrollbar { width: 8px; }
+.output-body::-webkit-scrollbar-track { background: var(--ide-bar); }
+.output-body::-webkit-scrollbar-thumb {
+    background: rgba(79, 172, 254, .55);
+    border-radius: var(--pill);
+}
+
+body.ide-page footer {
+    flex-shrink: 0;
+    margin-top: 0;
+    padding: 12px var(--pad);
+    font-size: .8rem;
+    text-align: center;
+}
+
+body.ide-page .footer-bottom {
+    border-top: 0;
+    padding: 0;
+}
+
+/* =========================================================
+   24. 响应式
+   ========================================================= */
+@media (max-width: 980px) {
+    .split {
+        grid-template-columns: 1fr;
+    }
+
+    .facts {
+        position: static;
+    }
+}
+
+@media (max-width: 900px) {
+    .nav-toggle {
+        display: block;
+        order: 3;
+    }
+
+    .nav {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 100%;
+        display: none;
+        padding: 0 var(--pad) 16px;
+        background: rgba(9, 24, 31, .97);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        border-bottom: 1px solid rgba(255, 255, 255, .08);
+        box-shadow: 0 18px 34px rgba(7, 19, 26, .42);
+    }
+
+    .nav.open {
+        display: block;
+        animation: navDrop .26s var(--ease);
+    }
+
+    @keyframes navDrop {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: none; }
+    }
+
+    .nav-list {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 6px;
+    }
+
+    .nav-link {
+        border-radius: 14px;
+        padding: 12px 16px;
+        font-size: 1rem;
+    }
+
+    .nav-link small {
+        display: inline-block;
+        margin: 0 0 0 8px;
+    }
+
+    .brand-text h1 {
+        white-space: normal;
+    }
+
+    .topbar-inner {
+        gap: 12px;
+    }
+
+    .hero .btn-row .btn {
+        min-width: 180px;
+    }
+}
+
+@media (max-width: 820px) {
+    body.ide-page {
+        height: auto;
+        min-height: 100vh;
+        overflow: auto;
+    }
+
+    body.ide-page::before {
+        display: block;
+    }
+
+    body.ide-page .topbar {
+        position: sticky;
+    }
+
+    .ide-main {
+        flex-direction: column;
+    }
+
+    .left-panel,
+    .right-panel {
+        flex: none;
+        width: 100%;
+    }
+
+    .left-panel {
+        min-height: 340px;
+    }
+
+    .right-panel {
+        min-height: 300px;
+    }
+
+    .input-wrapper,
+    .output-wrapper {
+        min-height: 200px;
+    }
+
+    .status-indicator {
+        margin-left: 0;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .control-bar {
+        justify-content: center;
+    }
+
+    .btn-run {
+        width: 100%;
+        order: -1;
+    }
+}
+
+@media (max-width: 620px) {
+    .section-title {
+        font-size: 1.4rem;
+    }
+
+    .cta-card {
+        align-items: stretch;
+    }
+
+    .cta-card .btn {
+        width: 100%;
+    }
+
+    .link-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 20px;
+    }
+
+    .link-card:hover {
+        transform: translateY(-4px);
+    }
+
+    .photo img,
+    .photo--wide img {
+        height: 210px;
+    }
+
+    .footer-inner {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .footer-nav {
+        justify-content: center;
+    }
+
+    table {
+        min-width: 480px;
+        font-size: .92rem;
+    }
+
+    thead th,
+    tbody td {
+        padding: 13px 14px;
+    }
+
+    thead th:first-child,
+    tbody td:first-child {
+        padding-left: 18px;
+    }
+
+    tbody td:first-child {
+        font-size: .88rem;
+    }
+
+    .badge {
+        font-size: .68rem;
+        padding: 4px 10px;
+    }
+}
+
+@media (max-width: 460px) {
+    .brand-text p {
+        display: none;
+    }
+
+    .hero {
+        padding-block: 56px 48px;
+    }
+
+    .btn-row .btn {
+        width: 100%;
+    }
+
+    .qr-frame img {
+        width: 190px;
+        height: 190px;
+    }
+}
+
+/* ---------- 25. 打印 ---------- */
+@media print {
+    .topbar,
+    .to-top,
+    .progress,
+    .lightbox,
+    .nav-toggle {
+        display: none !important;
+    }
+
+    body {
+        background: #fff;
+    }
+
+    .card,
+    .photo,
+    .link-card,
+    .table-wrap,
+    .contact-card,
+    .facts,
+    .notice {
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+}
+
+/* ---------- 26. 减弱动效 ---------- */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+    }
+
+    html.js .reveal,
+    html.js .reveal-in {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+
+/* =========================================================
+   27. iOS 26 · Liquid Glass 液态玻璃重设计（覆盖层）
+   只调整"材质与层次"，不改变页面结构与文案。
+   要点：悬浮玻璃岛导航、磨砂通透卡片、彩色环境光壁纸、
+        高光内描边、更大圆角与弹性按压微动效。
+   ========================================================= */
+
+/* 27.1 材质变量重定义：更圆润的曲率、通透的表面 */
+:root {
+    --bg: #f2f6fc;
+    --bg-soft: rgba(255, 255, 255, .45);
+    --surface: rgba(255, 255, 255, .58);
+    --surface-2: rgba(255, 255, 255, .4);
+    --line: rgba(255, 255, 255, .72);
+
+    --r-sm: 14px;
+    --r-md: 20px;
+    --r-lg: 28px;
+    --r-xl: 36px;
+
+    --sh-1: 0 1px 2px rgba(11, 27, 36, .06), 0 4px 14px rgba(28, 62, 90, .08);
+    --sh-2: 0 2px 6px rgba(11, 27, 36, .06), 0 12px 30px rgba(28, 62, 90, .13);
+    --sh-3: 0 6px 16px rgba(11, 27, 36, .10), 0 26px 56px rgba(28, 62, 90, .18);
+
+    /* 玻璃边缘高光：顶部入射光 + 底部环境反射 */
+    --glass-hi: inset 0 1px 0 rgba(255, 255, 255, .9), inset 0 -1px 0 rgba(255, 255, 255, .28);
+}
+
+/* 27.2 彩色"壁纸"环境光 —— 液态玻璃需要有色彩可透，才有折射感 */
+body::before {
+    background:
+        radial-gradient(58% 42% at 88% -6%, rgba(79, 172, 254, .2), transparent 62%),
+        radial-gradient(46% 38% at -8% 18%, rgba(0, 242, 254, .14), transparent 60%),
+        linear-gradient(180deg, #f4f8fd 0%, #eaf1f8 100%);
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    inset: -18%;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        radial-gradient(26% 26% at 14% 22%, rgba(105, 195, 255, .34), transparent 62%),
+        radial-gradient(24% 24% at 84% 10%, rgba(96, 235, 210, .26), transparent 62%),
+        radial-gradient(28% 28% at 74% 84%, rgba(255, 186, 106, .2), transparent 64%),
+        radial-gradient(22% 22% at 32% 76%, rgba(158, 140, 255, .16), transparent 62%);
+    animation: auroraFloat 34s ease-in-out infinite alternate;
+}
+
+@keyframes auroraFloat {
+    from { transform: translate3d(-1.5%, -1%, 0) scale(1); }
+    to   { transform: translate3d(2%, 1.6%, 0) scale(1.07); }
+}
+
+/* IDE 工作台保持沉浸式暗色桌面，不铺彩光 */
+body.ide-page::after {
+    display: none;
+}
+
+/* 27.3 悬浮玻璃岛导航 */
+.topbar {
+    position: sticky;
+    top: 12px;
+    z-index: 1000;
+    background: transparent;
+    border-bottom: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    padding-inline: clamp(10px, 3vw, 26px);
+}
+
+.topbar::after {
+    display: none;
+}
+
+.topbar-inner {
+    background: linear-gradient(180deg, rgba(255, 255, 255, .74), rgba(255, 255, 255, .52));
+    backdrop-filter: saturate(180%) blur(28px);
+    -webkit-backdrop-filter: saturate(180%) blur(28px);
+    border: 1px solid rgba(255, 255, 255, .78);
+    border-radius: var(--r-xl);
+    box-shadow: 0 10px 34px rgba(11, 45, 66, .16), var(--glass-hi);
+    padding: 8px 10px 8px 14px;
+    gap: 14px;
+}
+
+/* 玻璃岛是浅色材质，标题文字改为深色墨水 */
+.topbar h1,
+.topbar h2,
+.topbar h3,
+.topbar h4 {
+    color: var(--brand-800);
+}
+
+.brand-text .brand-title {
+    color: var(--brand-800);
+}
+
+.brand-text .brand-sub {
+    color: #2c8cc9;
+}
+
+.brand-mark {
+    border-radius: 15px;
+    box-shadow: 0 6px 16px rgba(79, 172, 254, .35), inset 0 0 0 1.5px rgba(255, 255, 255, .8);
+}
+
+.nav-link {
+    color: var(--ink-2);
+}
+
+.nav-link:hover {
+    color: var(--brand-800);
+    background: rgba(255, 255, 255, .7);
+    box-shadow: var(--glass-hi);
+}
+
+.nav-link.is-active {
+    color: var(--brand-800);
+    background:
+        radial-gradient(90% 130% at 50% 6%, rgba(255, 255, 255, .9) 0 16%, rgba(255, 255, 255, .3) 40%, rgba(255, 255, 255, .08) 68%),
+        linear-gradient(180deg, rgba(255, 255, 255, .36), rgba(255, 255, 255, .12));
+    border: 1px solid rgba(255, 255, 255, .92);
+    box-shadow:
+        inset 0 2px 2px rgba(255, 255, 255, .95),
+        inset 0 -3px 6px rgba(255, 255, 255, .5),
+        inset 0 0 14px rgba(255, 255, 255, .32),
+        0 8px 20px rgba(20, 60, 90, .14);
+    -webkit-backdrop-filter: saturate(180%) blur(16px);
+    backdrop-filter: saturate(180%) blur(16px);
+}
+
+.nav-toggle {
+    border-color: rgba(255, 255, 255, .85);
+    background: rgba(255, 255, 255, .55);
+}
+
+.nav-toggle:hover {
+    background: rgba(255, 255, 255, .88);
+    border-color: #fff;
+}
+
+.nav-toggle span {
+    background: var(--brand-800);
+}
+
+/* 27.4 磨砂玻璃面：统一挂载背景折射与高光描边 */
+.card,
+.callout,
+.facts,
+.value,
+.milestone,
+.photo,
+.link-card,
+.cta-card,
+.table-wrap,
+.contact-card,
+.notice,
+.figure-img,
+.friend-links a,
+.qr-frame,
+.lightbox-close,
+.to-top {
+    -webkit-backdrop-filter: saturate(170%) blur(20px);
+    backdrop-filter: saturate(170%) blur(20px);
+}
+
+.card {
+    border-radius: var(--r-lg);
+    box-shadow: var(--sh-2), var(--glass-hi);
+}
+
+.card::before {
+    height: 2px;
+    opacity: .8;
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.012);
+    border-color: rgba(255, 255, 255, .95);
+    box-shadow: var(--sh-3), var(--glass-hi);
+}
+
+.card-icon {
+    background: rgba(255, 255, 255, .55);
+    border: 1px solid rgba(255, 255, 255, .85);
+    backdrop-filter: saturate(160%) blur(12px);
+    -webkit-backdrop-filter: saturate(160%) blur(12px);
+    box-shadow: var(--glass-hi), 0 6px 16px rgba(79, 172, 254, .14);
+}
+
+.card:hover .card-icon {
+    transform: translateY(-3px) scale(1.05) rotate(-4deg);
+    box-shadow: var(--glass-hi), 0 12px 26px rgba(79, 172, 254, .3);
+}
+
+.callout {
+    border-radius: var(--r-lg);
+    box-shadow: var(--sh-2), var(--glass-hi);
+}
+
+.facts {
+    box-shadow: var(--sh-2), var(--glass-hi);
+}
+
+.value,
+.milestone {
+    box-shadow: var(--sh-1), var(--glass-hi);
+}
+
+.value:hover,
+.milestone:hover {
+    transform: translateY(-6px) scale(1.015);
+    border-color: rgba(255, 255, 255, .9);
+    box-shadow: var(--sh-3), var(--glass-hi);
+}
+
+.photo {
+    box-shadow: var(--sh-2), var(--glass-hi);
+}
+
+.photo:hover {
+    transform: translateY(-9px) scale(1.008);
+    box-shadow: var(--sh-3), var(--glass-hi);
+}
+
+.photo .zoom-hint {
+    background: rgba(255, 255, 255, .3);
+    border: 1px solid rgba(255, 255, 255, .6);
+    backdrop-filter: saturate(160%) blur(14px);
+    -webkit-backdrop-filter: saturate(160%) blur(14px);
+    color: var(--brand-800);
+}
+
+.link-card {
+    box-shadow: var(--sh-1), var(--glass-hi);
+}
+
+.link-card:hover {
+    border-color: rgba(255, 255, 255, .95);
+    box-shadow: var(--sh-3), var(--glass-hi);
+}
+
+.cta-card {
+    box-shadow: var(--sh-2), var(--glass-hi);
+}
+
+.cta-card:hover {
+    box-shadow: var(--sh-3), var(--glass-hi);
+    border-color: rgba(255, 255, 255, .95);
+}
+
+.contact-card {
+    box-shadow: var(--sh-2), var(--glass-hi);
+}
+
+.contact-card:hover {
+    border-color: rgba(255, 255, 255, .95);
+    box-shadow: var(--sh-3), var(--glass-hi);
+}
+
+.contact-card .avatar {
+    box-shadow: 0 10px 24px rgba(79, 172, 254, .38), inset 0 0 0 4px rgba(255, 255, 255, .85);
+}
+
+.qr-frame {
+    background: rgba(255, 255, 255, .5);
+    border-color: rgba(255, 255, 255, .85);
+    box-shadow: var(--glass-hi), 0 6px 16px rgba(28, 62, 90, .08);
+}
+
+.notice {
+    border-radius: var(--r-lg);
+    box-shadow: var(--sh-1), var(--glass-hi);
+}
+
+.friend-links a {
+    border: 1px solid rgba(255, 255, 255, .9);
+    box-shadow: var(--sh-1), var(--glass-hi);
+}
+
+.friend-links a:hover {
+    color: #03222e;
+    background: var(--grad-accent);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: var(--sh-accent), inset 0 1px 0 rgba(255, 255, 255, .7);
+}
+
+/* 27.5 按钮：胶囊玻璃与弹性按压 */
+.btn {
+    border-radius: var(--pill);
+}
+
+.btn:active {
+    transform: translateY(-1px) scale(.94);
+}
+
+.btn-primary {
+    box-shadow: var(--sh-accent), inset 0 1px 0 rgba(255, 255, 255, .65);
+}
+
+.btn-amber {
+    box-shadow: var(--sh-amber), inset 0 1px 0 rgba(255, 255, 255, .6);
+}
+
+.btn-ghost {
+    background: rgba(255, 255, 255, .28);
+    border: 1px solid rgba(255, 255, 255, .55);
+    color: #fff;
+    backdrop-filter: saturate(160%) blur(16px);
+    -webkit-backdrop-filter: saturate(160%) blur(16px);
+    box-shadow: var(--glass-hi);
+}
+
+.btn-ghost:hover {
+    background: rgba(255, 255, 255, .42);
+}
+
+.btn-outline {
+    background: rgba(255, 255, 255, .55);
+    border: 1px solid rgba(255, 255, 255, .85);
+    color: var(--accent-deep);
+    box-shadow: var(--sh-1), var(--glass-hi);
+    backdrop-filter: saturate(160%) blur(14px);
+    -webkit-backdrop-filter: saturate(160%) blur(14px);
+}
+
+.btn-outline:hover {
+    background: rgba(255, 255, 255, .78);
+    border-color: #fff;
+}
+
+/* 27.6 深色横幅上的玻璃附件（首页已转浅底，标签同步为浅玻璃） */
+.hero .eyebrow {
+    color: var(--accent-deep);
+    background: rgba(255, 255, 255, .5);
+    border-color: rgba(255, 255, 255, .85);
+    backdrop-filter: saturate(160%) blur(12px);
+    -webkit-backdrop-filter: saturate(160%) blur(12px);
+}
+
+.breadcrumb {
+    background: rgba(255, 255, 255, .5);
+    border: 1px solid rgba(255, 255, 255, .85);
+    color: var(--muted);
+    backdrop-filter: saturate(160%) blur(12px);
+    -webkit-backdrop-filter: saturate(160%) blur(12px);
+}
+
+.pill-note {
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, .55), rgba(255, 255, 255, .28)),
+        var(--surface);
+    border: 1px solid rgba(255, 255, 255, .85);
+    color: var(--ink-2);
+    -webkit-backdrop-filter: saturate(170%) blur(16px);
+    backdrop-filter: saturate(170%) blur(16px);
+    box-shadow: var(--sh-1), var(--glass-hi);
+}
+
+.pill-note span {
+    color: var(--accent-deep);
+}
+
+/* 27.7 表格、浮层与悬浮球 */
+.table-wrap {
+    border-radius: var(--r-lg);
+}
+
+thead th {
+    background: linear-gradient(180deg, rgba(79, 172, 254, .16), rgba(79, 172, 254, .07));
+    color: var(--brand-700);
+    border-bottom: 1px solid rgba(79, 172, 254, .25);
+}
+
+tbody tr:hover {
+    background: rgba(140, 200, 255, .16);
+}
+
+.to-top {
+    background: rgba(255, 255, 255, .62);
+    border: 1px solid rgba(255, 255, 255, .9);
+    color: var(--brand-700);
+    box-shadow: var(--sh-2), var(--glass-hi);
+}
+
+.to-top:hover {
+    background: rgba(255, 255, 255, .92);
+    color: var(--brand-800);
+    box-shadow: var(--sh-3), var(--glass-hi);
+    transform: translateY(-3px);
+}
+
+.lightbox {
+    background: rgba(6, 16, 21, .58);
+    backdrop-filter: saturate(140%) blur(24px);
+    -webkit-backdrop-filter: saturate(140%) blur(24px);
+}
+
+.lightbox-close {
+    background: rgba(255, 255, 255, .16);
+    border-color: rgba(255, 255, 255, .45);
+}
+
+.lightbox-close:hover {
+    background: rgba(255, 255, 255, .32);
+}
+
+.lightbox img {
+    border-radius: var(--r-md);
+    border: 1px solid rgba(255, 255, 255, .35);
+}
+
+/* 27.8 窄屏：下拉菜单同步变成悬浮玻璃板 */
+@media (max-width: 900px) {
+    .nav {
+        left: clamp(10px, 3vw, 26px);
+        right: clamp(10px, 3vw, 26px);
+        top: calc(100% + 8px);
+        padding: 10px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, .82), rgba(255, 255, 255, .64));
+        backdrop-filter: saturate(180%) blur(26px);
+        -webkit-backdrop-filter: saturate(180%) blur(26px);
+        border: 1px solid rgba(255, 255, 255, .8);
+        border-radius: var(--r-lg);
+        box-shadow: 0 22px 48px rgba(11, 45, 66, .24), var(--glass-hi);
+    }
+
+    .nav-link {
+        border-radius: 16px;
+        color: var(--ink-2);
+    }
+
+    .nav-link:hover {
+        background: rgba(255, 255, 255, .9);
+        color: var(--brand-800);
+    }
+}
+
+/* 27.9 渐进增强兜底：不支持背景折射的浏览器提高不透明度 */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    :root {
+        --surface: rgba(255, 255, 255, .92);
+        --surface-2: rgba(255, 255, 255, .85);
+        --line: rgba(210, 224, 240, .9);
+    }
+
+    .topbar-inner {
+        background: rgba(255, 255, 255, .94);
+    }
+
+    .nav {
+        background: rgba(255, 255, 255, .96);
+    }
+}
+
+/* 27.10 打印时回退为普通纸面 */
+@media print {
+    body::after {
+        display: none;
+    }
+
+    .topbar {
+        position: static;
+        padding-inline: 0;
+    }
+
+    .topbar-inner {
+        background: #fff;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .card,
+    .callout,
+    .facts,
+    .value,
+    .milestone,
+    .photo,
+    .link-card,
+    .cta-card,
+    .table-wrap,
+    .contact-card,
+    .notice,
+    .qr-frame,
+    .friend-links a {
+        background: #fff;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+}
+
+/* =========================================================
+   28. iOS 26 · Liquid Glass 灵动动效层（与 theme.js 第 7 节配套）
+   ========================================================= */
+
+/* 28.1 全局：更"Q 弹"的缓动，供滑块/入场/按压共用 */
+:root {
+    --liquid: cubic-bezier(.34, 1.56, .64, 1);
+}
+
+/* 28.2 跟随鼠标的大圆光斑已移除：界面不出现圆形光球 */
+
+/* 28.3 导航弹性玻璃滑块：一层跟随当前/悬停项的果冻光 */
+.nav-list {
+    position: relative;
+}
+
+.nav-glow {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 0;
+    border-radius: var(--pill);
+    background: rgba(255, 255, 255, .14);
+    border: 1px solid rgba(255, 255, 255, .55);
+    box-shadow: var(--glass-hi),
+        inset 0 0 12px rgba(255, 255, 255, .18),
+        0 4px 14px rgba(20, 60, 90, .1);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform .42s var(--liquid), width .42s var(--liquid),
+                height .42s var(--liquid), opacity .3s ease;
+    will-change: transform, width;
+    -webkit-backdrop-filter: saturate(160%) blur(8px);
+    backdrop-filter: saturate(160%) blur(8px);
+}
+
+.nav-glow.on {
+    opacity: 1;
+}
+
+.nav-list .nav-link {
+    z-index: 1;
+}
+
+/* 激活项与滑块叠合时保留渐变品牌色 */
+.nav-link.is-active {
+    position: relative;
+}
+
+/* 28.4 滚动收窄：导航玻璃岛向上滚动时缩成更清亮的小胶囊 */
+.topbar-inner {
+    transition: padding .38s var(--ease), background .38s ease, box-shadow .38s ease;
+    will-change: padding;
+}
+
+.topbar.is-stuck .topbar-inner {
+    padding-block: 4px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, .84), rgba(255, 255, 255, .66));
+    box-shadow: 0 6px 22px rgba(11, 45, 66, .12), var(--glass-hi);
+}
+
+.topbar.is-stuck .brand-mark {
+    width: 36px;
+    height: 36px;
+    border-radius: 12px;
+}
+
+.brand-mark {
+    transition: width .38s var(--liquid), height .38s var(--liquid),
+                border-radius .38s var(--ease), transform var(--t), box-shadow var(--t);
+}
+
+/* 28.5 首页横幅不添加跟随光斑：保持画面干净，
+       避免深色底上出现明显的透明圆形。 */
+
+/* 28.6 液态入场：滚动出现时带一点回弹，像气泡浮起 */
+@keyframes liqIn {
+    0%   { opacity: 0; transform: translateY(30px) scale(.96); }
+    60%  { opacity: 1; transform: translateY(-6px) scale(1.012); }
+    100% { opacity: 1; transform: none; }
+}
+
+html.js .reveal-in.in,
+html.js .reveal.in {
+    animation: liqIn .8s var(--liquid) backwards;
+    animation-delay: var(--d, 0s);
+    transition: none;
+}
+
+/* 按压反馈：所有主要可点面统一轻微回弹 */
+.btn:active,
+.nav-link:active,
+.friend-links a:active {
+    transform: scale(.93);
+    transition: transform .12s var(--ease);
+}
+
+/* 28.7 IDE 页无跟随光斑，无需额外处理 */
+
+/* 28.8 系统开启减弱动效时，关闭液态导航动效 */
+@media (prefers-reduced-motion: reduce) {
+    .nav-glow {
+        display: none !important;
+        opacity: 0 !important;
+    }
+
+    html.js .reveal-in.in,
+    html.js .reveal.in {
+        animation: none;
+        transition: opacity .001ms, transform .001ms;
+    }
+
+    .topbar.is-stuck .topbar-inner,
+    .topbar.is-stuck .brand-mark,
+    .topbar.is-compact .topbar-inner,
+    .topbar.is-compact .brand-mark {
+        transition: none;
+    }
+}
+
+/* =========================================================
+   29. 顶部选项栏 · iOS 26 完整液态玻璃
+   只覆盖导航相关规则：悬浮玻璃岛、光谱折射边缘、镜面高光、
+   水滴选中胶囊、悬停果冻滑块。站点其余部分不受本段影响。
+   ========================================================= */
+
+/* 29.1 悬浮玻璃岛 */
+.topbar {
+    top: 14px;
+}
+
+.topbar-inner {
+    position: relative;
+    width: max-content;
+    max-width: min(1180px, calc(100vw - clamp(24px, 7vw, 64px)));
+    margin-inline: auto;
+    padding: 9px 12px;
+    gap: 22px;
+    border: 0;
+    border-radius: 999px;
+    background:
+        /* 顶部入射亮带 + 底部环境反光 */
+        linear-gradient(180deg,
+            rgba(255, 255, 255, .58) 0%,
+            rgba(255, 255, 255, .18) 40%,
+            rgba(255, 255, 255, .07) 62%,
+            rgba(255, 255, 255, .34) 100%),
+        rgba(248, 251, 255, .3);
+    -webkit-backdrop-filter: blur(34px) saturate(190%) brightness(1.05);
+    backdrop-filter: blur(34px) saturate(190%) brightness(1.05);
+    box-shadow:
+        0 18px 48px rgba(10, 40, 60, .16),
+        0 3px 10px rgba(10, 40, 60, .08),
+        inset 0 1px 0 rgba(255, 255, 255, .85),
+        inset 0 -1px 0 rgba(255, 255, 255, .5);
+}
+
+/* 光谱色散环：模拟玻璃厚度在边缘折射出的冷/暖彩边 */
+.topbar-inner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.6px;
+    background: linear-gradient(155deg,
+        rgba(255, 255, 255, .95) 0%,
+        rgba(150, 215, 255, .55) 26%,
+        rgba(255, 255, 255, .18) 48%,
+        rgba(255, 205, 160, .5) 72%,
+        rgba(255, 255, 255, .85) 100%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+/* 掠过式镜面反光：鼠标经过玻璃岛时一道柔光扫过 */
+.topbar-inner::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background: linear-gradient(115deg,
+        transparent 30%,
+        rgba(255, 255, 255, .14) 46%,
+        rgba(255, 255, 255, .3) 50%,
+        rgba(255, 255, 255, .14) 54%,
+        transparent 70%);
+    opacity: 0;
+    transition: opacity .55s ease;
+}
+
+.topbar:hover .topbar-inner::after {
+    opacity: 1;
+}
+
+/* 29.2 滚动收窄态：同一块玻璃，更清亮小巧 */
+.topbar.is-stuck .topbar-inner {
+    padding-block: 5px;
+    background:
+        linear-gradient(180deg,
+            rgba(255, 255, 255, .62) 0%,
+            rgba(255, 255, 255, .2) 46%,
+            rgba(255, 255, 255, .4) 100%),
+        rgba(248, 251, 255, .4);
+    box-shadow:
+        0 10px 30px rgba(10, 40, 60, .13),
+        inset 0 1px 0 rgba(255, 255, 255, .9),
+        inset 0 -1px 0 rgba(255, 255, 255, .55);
+}
+
+/* 29.3 菜单项：常态干净透明，悬停反馈交给下面的滑块 */
+.nav-link {
+    color: var(--ink-2);
+}
+
+.nav-link:hover {
+    color: var(--brand-800);
+    background: transparent;
+    box-shadow: none;
+}
+
+/* 29.4 悬停果冻滑块：游动的浅色玻璃胶囊 */
+.nav-glow {
+    background: linear-gradient(180deg, rgba(255, 255, 255, .46), rgba(255, 255, 255, .16));
+    border: 1px solid rgba(255, 255, 255, .62);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .92),
+        inset 0 -1px 2px rgba(255, 255, 255, .45),
+        0 4px 12px rgba(10, 40, 60, .08);
+    -webkit-backdrop-filter: blur(10px) saturate(160%);
+    backdrop-filter: blur(10px) saturate(160%);
+}
+
+/* 29.5 选中态：一颗完整的水滴玻璃胶囊 */
+.nav-link.is-active {
+    color: var(--brand-800);
+    border: 1px solid rgba(255, 255, 255, .9);
+    background:
+        radial-gradient(90% 130% at 50% -10%,
+            rgba(255, 255, 255, .98) 0 16%,
+            rgba(255, 255, 255, .4) 40%,
+            rgba(255, 255, 255, .12) 66%,
+            rgba(255, 255, 255, .4) 100%),
+        linear-gradient(180deg, rgba(255, 255, 255, .4), rgba(255, 255, 255, .14));
+    box-shadow:
+        inset 0 1.5px 1px rgba(255, 255, 255, 1),
+        inset 0 -2px 4px rgba(255, 255, 255, .55),
+        inset 0 0 14px rgba(255, 255, 255, .3),
+        0 8px 18px rgba(10, 40, 60, .14);
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
+    backdrop-filter: blur(12px) saturate(150%);
+}
+
+/* 29.6 窄屏下拉菜单：与玻璃岛同一块材质（仅换材质，不改位置动效） */
+@media (max-width: 900px) {
+    .topbar-inner {
+        width: 100%;
+        max-width: none;
+        border-radius: 26px;
+        flex-wrap: wrap;
+    }
+
+    .nav {
+        background:
+            linear-gradient(180deg, rgba(255, 255, 255, .6), rgba(255, 255, 255, .24)),
+            rgba(248, 251, 255, .4);
+        border: 0;
+        border-radius: 26px;
+        box-shadow:
+            0 22px 54px rgba(10, 40, 60, .2),
+            inset 0 1px 0 rgba(255, 255, 255, .9),
+            inset 0 -1px 0 rgba(255, 255, 255, .5);
+        -webkit-backdrop-filter: blur(30px) saturate(190%);
+        backdrop-filter: blur(30px) saturate(190%);
+    }
+
+    .nav-link:hover {
+        background: rgba(255, 255, 255, .55);
+    }
+}
+
+/* 29.7 减弱动效时滑块不生成，悬停补一层轻玻璃反馈 */
+@media (prefers-reduced-motion: reduce) {
+    .nav-link:hover {
+        background: rgba(255, 255, 255, .55);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, .9);
+    }
+}
+
+/* =========================================================
+   30. 灵动岛形态（.topbar.is-compact = 下滑收拢态）
+   下滑：玻璃岛变细变短，英文字收起、logo 缩小、间距收紧；
+   上滑：整体舒展回原尺寸。弹性缓动，全岛同步呼吸。
+   ========================================================= */
+
+.topbar {
+    top: 14px;
+    transition: top .45s var(--liquid);
+}
+
+.topbar.is-compact {
+    top: 8px;
+}
+
+.topbar-inner {
+    transition:
+        padding .45s var(--liquid),
+        background .45s ease,
+        box-shadow .45s ease,
+        max-width .45s var(--liquid);
+}
+
+.brand {
+    gap: 11px;
+    transition: gap .45s var(--liquid);
+}
+
+.brand-text .brand-title {
+    transition:
+        font-size .45s var(--liquid),
+        opacity .3s ease;
+}
+
+.brand-text .brand-sub {
+    max-height: 16px;
+    opacity: 1;
+    transition:
+        max-height .4s var(--ease),
+        opacity .3s ease,
+        margin .4s var(--ease);
+}
+
+.nav-list {
+    gap: 4px;
+    transition: gap .45s var(--liquid);
+}
+
+.nav-link {
+    padding: 9px 15px;
+    transition:
+        padding .45s var(--liquid),
+        font-size .45s var(--liquid),
+        color var(--t-fast),
+        background var(--t-fast);
+}
+
+.nav-link small {
+    max-height: 14px;
+    opacity: .6;
+    transition:
+        max-height .38s var(--ease),
+        opacity .28s ease;
+}
+
+/* ---- 收拢态：只保留徽标，中英文站名全部隐藏 ---- */
+.topbar.is-compact .brand-text {
+    display: none;
+}
+
+.topbar.is-compact .brand-mark {
+    width: 32px;
+    height: 32px;
+    border-radius: 11px;
+}
+
+.topbar.is-compact .topbar-inner {
+    padding: 4px 8px;
+}
+
+.topbar.is-compact .nav-list {
+    gap: 0;
+}
+
+.topbar.is-compact .nav-link {
+    padding: 4px 10px;
+    font-size: .86rem;
+}
+
+.topbar.is-compact .nav-link small {
+    max-height: 0;
+    opacity: 0;
+}
+
+/* 舒展态（上滑/未收拢）：不受旧收窄规则影响，保持完整尺寸 */
+.topbar:not(.is-compact).is-stuck .topbar-inner {
+    padding: 9px 12px;
+}
+
+.topbar:not(.is-compact) .brand-mark {
+    width: 44px;
+    height: 44px;
+    border-radius: 13px;
+}
+
+/* 收拢后滑块立即按新尺寸校准（transition 由 JS 瞬时处理） */
+.nav-glow {
+    transition:
+        transform .42s var(--liquid),
+        width .42s var(--liquid),
+        height .42s var(--liquid),
+        opacity .3s ease;
+}
+
+/* =========================================================
+   31. 日/夜切换：选项栏中部的玻璃开关
+   ========================================================= */
+.theme-toggle {
+    position: relative;
+    flex-shrink: 0;
+    width: 60px;
+    height: 32px;
+    border: 1px solid rgba(255, 255, 255, .85);
+    border-radius: var(--pill);
+    cursor: pointer;
+    padding: 0;
+    color: var(--ink-2);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, .5), rgba(255, 255, 255, .16)),
+        rgba(240, 247, 255, .32);
+    -webkit-backdrop-filter: blur(14px) saturate(170%);
+    backdrop-filter: blur(14px) saturate(170%);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .9),
+        inset 0 -1px 2px rgba(255, 255, 255, .45),
+        0 4px 12px rgba(10, 40, 60, .1);
+    transition: box-shadow var(--t), border-color var(--t), background .4s ease;
+}
+
+.theme-toggle:hover {
+    border-color: #fff;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .95),
+        inset 0 -1px 2px rgba(255, 255, 255, .5),
+        0 6px 16px rgba(10, 40, 60, .14);
+}
+
+.theme-toggle:active {
+    transform: scale(.94);
+    transition: transform .12s var(--ease);
+}
+
+.tt-ico {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 15px;
+    height: 15px;
+    z-index: 1;
+    pointer-events: none;
+    transition: color .4s ease, opacity .4s ease;
+}
+
+.tt-sun {
+    left: 8px;
+    color: #e8960c;
+    opacity: 1;
+}
+
+.tt-moon {
+    right: 8px;
+    color: #9db4c2;
+    opacity: .62;
+}
+
+/* 水滴旋钮：停在"当前模式"一侧 */
+.tt-knob {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background:
+        radial-gradient(90% 130% at 50% -10%,
+            rgba(255, 255, 255, .98) 0 18%,
+            rgba(255, 255, 255, .42) 44%,
+            rgba(255, 255, 255, .12) 70%,
+            rgba(255, 255, 255, .4) 100%),
+        linear-gradient(180deg, rgba(255, 255, 255, .44), rgba(255, 255, 255, .12));
+    border: 1px solid rgba(255, 255, 255, .92);
+    box-shadow:
+        inset 0 1.5px 1px rgba(255, 255, 255, 1),
+        inset 0 -2px 4px rgba(255, 255, 255, .5),
+        0 5px 12px rgba(10, 40, 60, .16);
+    transition: transform .5s var(--liquid);
+}
+
+html[data-theme="dark"] .tt-knob {
+    transform: translateX(28px);
+}
+
+html[data-theme="dark"] .tt-sun {
+    color: #c9d8e2;
+    opacity: .55;
+}
+
+html[data-theme="dark"] .tt-moon {
+    color: #ffd97a;
+    opacity: 1;
+}
+
+/* =========================================================
+   32. 黑夜模式（html[data-theme="dark"]）
+   全站换墨：壁纸转深、玻璃面转暗、文字转亮；
+   Hero / 页脚 / IDE 本就是深色，保持原样。
+   ========================================================= */
+html[data-theme="dark"] {
+    color-scheme: dark;
+
+    --bg: #0d1520;
+    --bg-soft: rgba(255, 255, 255, .05);
+    --surface: rgba(255, 255, 255, .07);
+    --surface-2: rgba(255, 255, 255, .045);
+    --ink: #e9f2f9;
+    --ink-2: #c2d3df;
+    --muted: #93a9b8;
+    --line: rgba(255, 255, 255, .14);
+
+    --brand-700: #dcecf7;
+    --brand-800: #edf5fb;
+    --accent-deep: #7cc9ff;
+
+    --glass-hi: inset 0 1px 0 rgba(255, 255, 255, .22), inset 0 -1px 0 rgba(255, 255, 255, .07);
+    --sh-1: 0 1px 2px rgba(0, 0, 0, .3), 0 4px 14px rgba(0, 0, 0, .32);
+    --sh-2: 0 2px 6px rgba(0, 0, 0, .32), 0 12px 30px rgba(0, 0, 0, .4);
+    --sh-3: 0 6px 16px rgba(0, 0, 0, .38), 0 26px 56px rgba(0, 0, 0, .5);
+}
+
+/* 深色壁纸与彩光 */
+html[data-theme="dark"] body::before {
+    background:
+        radial-gradient(58% 42% at 88% -6%, rgba(58, 140, 220, .18), transparent 62%),
+        radial-gradient(46% 38% at -8% 18%, rgba(0, 190, 210, .1), transparent 60%),
+        linear-gradient(180deg, #0d1520 0%, #0a1119 100%);
+}
+
+html[data-theme="dark"] body::after {
+    background:
+        radial-gradient(26% 26% at 14% 22%, rgba(60, 150, 235, .2), transparent 62%),
+        radial-gradient(24% 24% at 84% 10%, rgba(35, 190, 175, .14), transparent 62%),
+        radial-gradient(28% 28% at 74% 84%, rgba(215, 140, 70, .1), transparent 64%),
+        radial-gradient(22% 22% at 32% 76%, rgba(130, 105, 220, .12), transparent 62%);
+}
+
+html[data-theme="dark"] ::selection {
+    background: rgba(120, 195, 255, .32);
+    color: #f2f9ff;
+}
+
+/* 玻璃岛转暗 */
+html[data-theme="dark"] .topbar-inner {
+    background:
+        linear-gradient(180deg,
+            rgba(255, 255, 255, .16) 0%,
+            rgba(255, 255, 255, .05) 42%,
+            rgba(255, 255, 255, .03) 62%,
+            rgba(255, 255, 255, .1) 100%),
+        rgba(14, 26, 40, .55);
+    box-shadow:
+        0 18px 48px rgba(0, 0, 0, .5),
+        0 3px 10px rgba(0, 0, 0, .3),
+        inset 0 1px 0 rgba(255, 255, 255, .26),
+        inset 0 -1px 0 rgba(255, 255, 255, .1);
+}
+
+html[data-theme="dark"] .topbar-inner::before {
+    background: linear-gradient(155deg,
+        rgba(255, 255, 255, .5) 0%,
+        rgba(130, 200, 255, .3) 26%,
+        rgba(255, 255, 255, .08) 48%,
+        rgba(255, 195, 140, .24) 72%,
+        rgba(255, 255, 255, .42) 100%);
+}
+
+html[data-theme="dark"] .topbar.is-stuck .topbar-inner {
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, .18), rgba(255, 255, 255, .06)),
+        rgba(12, 22, 34, .7);
+}
+
+html[data-theme="dark"] .nav-glow {
+    background: linear-gradient(180deg, rgba(255, 255, 255, .22), rgba(255, 255, 255, .07));
+    border-color: rgba(255, 255, 255, .3);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .38),
+        inset 0 -1px 2px rgba(255, 255, 255, .12),
+        0 4px 12px rgba(0, 0, 0, .35);
+}
+
+/* 选中水滴转成暗色水晶 */
+html[data-theme="dark"] .nav-link.is-active {
+    border-color: rgba(255, 255, 255, .38);
+    background:
+        radial-gradient(90% 130% at 50% -10%,
+            rgba(255, 255, 255, .4) 0 16%,
+            rgba(255, 255, 255, .12) 40%,
+            rgba(255, 255, 255, .04) 66%,
+            rgba(255, 255, 255, .16) 100%),
+        linear-gradient(180deg, rgba(46, 80, 110, .5), rgba(18, 34, 50, .5));
+    box-shadow:
+        inset 0 1.5px 1px rgba(255, 255, 255, .5),
+        inset 0 -2px 4px rgba(255, 255, 255, .12),
+        0 8px 18px rgba(0, 0, 0, .4);
+}
+
+html[data-theme="dark"] .nav-toggle {
+    border-color: rgba(255, 255, 255, .28);
+    background: rgba(255, 255, 255, .08);
+}
+
+html[data-theme="dark"] .nav-toggle span {
+    background: #eaf4ff;
+}
+
+html[data-theme="dark"] .nav {
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, .14), rgba(255, 255, 255, .05)),
+        rgba(12, 22, 34, .8);
+    box-shadow:
+        0 22px 54px rgba(0, 0, 0, .5),
+        inset 0 1px 0 rgba(255, 255, 255, .24);
+}
+
+/* 日夜开关转暗 */
+html[data-theme="dark"] .theme-toggle {
+    border-color: rgba(255, 255, 255, .34);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, .14), rgba(255, 255, 255, .04)),
+        rgba(10, 20, 32, .5);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .3),
+        inset 0 -1px 2px rgba(255, 255, 255, .1),
+        0 4px 12px rgba(0, 0, 0, .38);
+}
+
+html[data-theme="dark"] .tt-knob {
+    background:
+        radial-gradient(90% 130% at 50% -10%,
+            rgba(255, 255, 255, .55) 0 18%,
+            rgba(190, 225, 255, .2) 44%,
+            rgba(255, 255, 255, .05) 70%,
+            rgba(255, 255, 255, .22) 100%),
+        linear-gradient(180deg, rgba(70, 110, 150, .5), rgba(24, 44, 66, .55));
+    border-color: rgba(255, 255, 255, .45);
+    box-shadow:
+        inset 0 1.5px 1px rgba(255, 255, 255, .6),
+        inset 0 -2px 4px rgba(255, 255, 255, .12),
+        0 5px 12px rgba(0, 0, 0, .42);
+}
+
+/* 玻璃卡片转暗色水晶 */
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .callout,
+html[data-theme="dark"] .facts,
+html[data-theme="dark"] .value,
+html[data-theme="dark"] .milestone,
+html[data-theme="dark"] .photo,
+html[data-theme="dark"] .link-card,
+html[data-theme="dark"] .contact-card,
+html[data-theme="dark"] .notice,
+html[data-theme="dark"] .table-wrap,
+html[data-theme="dark"] .cta-card {
+    border-color: rgba(255, 255, 255, .16);
+}
+
+html[data-theme="dark"] .friend-links a {
+    border-color: rgba(255, 255, 255, .3);
+    color: var(--brand-700);
+}
+
+html[data-theme="dark"] .btn-outline {
+    background: rgba(255, 255, 255, .08);
+    border-color: rgba(255, 255, 255, .3);
+    color: var(--accent-deep);
+}
+
+html[data-theme="dark"] .btn-outline:hover {
+    background: rgba(255, 255, 255, .16);
+    border-color: rgba(255, 255, 255, .5);
+}
+
+html[data-theme="dark"] .qr-frame {
+    background: rgba(255, 255, 255, .1);
+    border-color: rgba(255, 255, 255, .26);
+}
+
+html[data-theme="dark"] .to-top {
+    background: rgba(30, 46, 64, .72);
+    border-color: rgba(255, 255, 255, .3);
+    color: #eaf4ff;
+}
+
+html[data-theme="dark"] .to-top:hover {
+    background: rgba(52, 78, 104, .85);
+    color: #fff;
+}
+
+html[data-theme="dark"] .skip-link {
+    background: #16303a;
+}
+
+html[data-theme="dark"] thead th {
+    background: linear-gradient(180deg, rgba(30, 58, 76, .92), rgba(16, 34, 48, .92));
+}
+
+html[data-theme="dark"] tbody tr:hover {
+    background: rgba(120, 195, 255, .1);
+}
+
+html[data-theme="dark"] .badge-regular,
+html[data-theme="dark"] .badge-gold,
+html[data-theme="dark"] .badge-silver {
+    border-color: rgba(255, 255, 255, .24);
+}
+
+html[data-theme="dark"] .badge-regular { color: #bfe3ff; }
+html[data-theme="dark"] .badge-gold { color: #ffd98a; }
+html[data-theme="dark"] .badge-silver { color: #d7e3ec; }
+
+/* 窄屏玻璃岛菜单里的文字反白校正 */
+html[data-theme="dark"] .nav-link,
+html[data-theme="dark"] .nav-link:hover,
+html[data-theme="dark"] .nav-link.is-active {
+    color: #eaf4ff;
+}
+
+/* 窄屏：开关按钮移到汉堡键之前，菜单项悬停反馈转暗 */
+@media (max-width: 900px) {
+    .theme-toggle {
+        order: 2;
+    }
+}
+
+/* 统一浅底后，黑夜模式下这些组件转为暗玻璃 */
+html[data-theme="dark"] .hero h2 .grad {
+    background: linear-gradient(96deg, #8fd8ff 0%, #ffffff 42%, #58e9f8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+html[data-theme="dark"] footer {
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, .07), rgba(255, 255, 255, .03)),
+        var(--surface);
+    border-color: rgba(255, 255, 255, .14);
+}
+
+html[data-theme="dark"] .breadcrumb,
+html[data-theme="dark"] .pill-note {
+    background: rgba(255, 255, 255, .08);
+    border-color: rgba(255, 255, 255, .22);
+}
+
+html[data-theme="dark"] .pill-note span {
+    color: #6ec6ff;
+}
+
+html[data-theme="dark"] .hero .eyebrow {
+    background: rgba(255, 255, 255, .1);
+    border-color: rgba(255, 255, 255, .26);
+}
+
+html[data-theme="dark"] .hero h2 {
+    text-shadow: 0 12px 34px rgba(0, 0, 0, .5);
+}
+
+html[data-theme="dark"] .page-hero::before {
+    background:
+        radial-gradient(32% 44% at 22% 34%, rgba(79, 172, 254, .16), transparent 68%),
+        radial-gradient(30% 40% at 78% 22%, rgba(0, 242, 254, .1), transparent 68%);
+}
+
+html[data-theme="dark"] .page-hero::after,
+html[data-theme="dark"] .hero::after {
+    background-image:
+        linear-gradient(rgba(255, 255, 255, .05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, .05) 1px, transparent 1px);
+}
+
+html[data-theme="dark"] .hero h2 .hero-school {
+    color: rgba(214, 234, 248, .68);
+}
+
+/* 黑夜模式细节收尾 */
+html[data-theme="dark"] .brand-text .brand-sub {
+    color: #6ec6ff;
+}
+
+html[data-theme="dark"] .photo img {
+    background: #16222e;
+}
+
+html[data-theme="dark"] .milestone::before,
+html[data-theme="dark"] .facts::before,
+html[data-theme="dark"] .link-card::before {
+    opacity: .9;
+}
+
+@media (max-width: 900px) {
+    html[data-theme="dark"] .nav-link:hover {
+        background: rgba(255, 255, 255, .14);
+        color: #fff;
+    }
+}
+
+/* 打印时强制回到浅色纸面 */
+@media print {
+    html[data-theme="dark"] {
+        --bg: #fff;
+        --surface: #fff;
+        --surface-2: #fff;
+        --ink: #000;
+        --ink-2: #222;
+        --muted: #444;
+        --line: #ccc;
+        --brand-700: #16303a;
+        --brand-800: #0f2027;
+    }
+
+    html[data-theme="dark"] body {
+        background: #fff;
+        color: #000;
+    }
+}

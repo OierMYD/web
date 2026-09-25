@@ -166,4 +166,139 @@
             if (e.key === 'Escape' && box.classList.contains('open')) shut();
         });
     })();
+
+    /* ---------- 7. 液态玻璃 · 灵动动效（渐进增强） ----------
+       导航弹性玻璃滑块 / 灵动岛收拢舒展。
+       检测到系统"减弱动效"偏好时整体跳过。 */
+    (function liquidMotion() {
+        var reduce = window.matchMedia &&
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce) return;
+
+        /* 7.1 跟随鼠标的圆形光斑已按需求移除 */
+
+        /* 7.2 灵动岛：下滑收拢变细变短，上滑舒展 */
+        var topbar = document.querySelector('.topbar');
+        var onIsland = [];      // 形态切换后需要重新测量的组件（导航滑块等）
+        var compact = false;
+        var lastY = window.pageYOffset;
+        var scrollTicking = false;
+
+        function notifyIsland() {
+            for (var i = 0; i < onIsland.length; i++) {
+                try { onIsland[i](compact); } catch (err) {}
+            }
+        }
+
+        function setState(next) {
+            if (next === compact) return;
+            compact = next;
+            if (topbar) topbar.classList.toggle('is-compact', compact);
+            notifyIsland();
+        }
+
+        function readScroll() {
+            scrollTicking = false;
+            var y = window.pageYOffset;
+            if (topbar) topbar.classList.toggle('is-stuck', y > 28);
+            if (!topbar) return;
+            if (y < 56) { setState(false); lastY = y; return; }
+            var dy = y - lastY;
+            if (dy > 14) setState(true);
+            else if (dy < -14) setState(false);
+            if (Math.abs(dy) > 4) lastY = y;
+        }
+
+        window.addEventListener('scroll', function () {
+            if (scrollTicking) return;
+            scrollTicking = true;
+            requestAnimationFrame(readScroll);
+        }, { passive: true });
+        readScroll();
+
+        /* 7.3 导航弹性玻璃滑块：仅悬停时出现（仅宽屏）。
+           选中态由水滴背景（CSS）标识，滑块不常驻，
+           避免灵动岛收放时气泡滞后漂移。 */
+        var navList = document.querySelector('.nav-list');
+        if (navList && window.matchMedia && window.matchMedia('(min-width: 901px)').matches) {
+            var glow = document.createElement('span');
+            glow.className = 'nav-glow';
+            glow.setAttribute('aria-hidden', 'true');
+            navList.insertBefore(glow, navList.firstChild);
+            var hovered = null;
+
+            function place(el, instant) {
+                if (!el) return;
+                if (instant) glow.style.transition = 'none';
+                var lr = navList.getBoundingClientRect();
+                var er = el.getBoundingClientRect();
+                glow.style.width = er.width + 'px';
+                glow.style.height = er.height + 'px';
+                glow.style.transform = 'translate(' +
+                    (er.left - lr.left).toFixed(1) + 'px, ' +
+                    (er.top - lr.top).toFixed(1) + 'px)';
+                if (instant) { void glow.offsetWidth; glow.style.transition = ''; }
+            }
+
+            navList.addEventListener('pointerover', function (e) {
+                var a = e.target.closest ? e.target.closest('.nav-link') : null;
+                if (!a) return;
+                var fresh = hovered !== a;
+                hovered = a;
+                place(a, !glow.classList.contains('on'));
+                if (fresh) glow.classList.add('on');
+            });
+            navList.addEventListener('pointerout', function (e) {
+                var a = e.target.closest ? e.target.closest('.nav-link') : null;
+                if (!a) return;
+                var to = e.relatedTarget;
+                if (to && a.contains(to)) return;
+                var next = to && to.closest ? to.closest('.nav-link') : null;
+                if (next) return; /* 移到其他菜单项，pointerover 会接管 */
+                hovered = null;
+                glow.classList.remove('on');
+            });
+            window.addEventListener('resize', function () {
+                if (hovered) place(hovered, true);
+                else glow.classList.remove('on');
+            });
+
+            /* 灵动岛收放过程中气泡先隐去，形变结束后若仍悬停再落位 */
+            onIsland.push(function () {
+                glow.classList.remove('on');
+                if (!hovered) return;
+                window.setTimeout(function () {
+                    if (!hovered) return;
+                    place(hovered, true);
+                    glow.classList.add('on');
+                }, 480);
+            });
+        }
+    })();
+
+    /* ---------- 8. 日/夜模式切换（全站记忆） ----------
+       IDE 编码工作台保持固有深色，不随模式改变，保证代码可读性。 */
+    (function themeToggle() {
+        var btn = document.getElementById('themeToggle');
+        var root = document.documentElement;
+
+        function apply(theme) {
+            root.setAttribute('data-theme', theme);
+            if (!btn) return;
+            var dark = theme === 'dark';
+            btn.setAttribute('aria-pressed', dark ? 'true' : 'false');
+            btn.setAttribute('aria-label', dark ? '切换白天模式' : '切换黑夜模式');
+            btn.setAttribute('title', dark ? '切换白天模式' : '切换黑夜模式');
+        }
+
+        apply(root.getAttribute('data-theme') || 'light');
+
+        if (btn) {
+            btn.addEventListener('click', function () {
+                var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                try { localStorage.setItem('itclub-theme', next); } catch (e) {}
+                apply(next);
+            });
+        }
+    })();
 })();

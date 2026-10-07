@@ -1489,37 +1489,10 @@ tbody td:last-child {
     box-shadow: var(--sh-3);
 }
 
-.contact-card .avatar {
-    width: 70px;
-    height: 70px;
-    display: grid;
-    place-items: center;
-    margin: 0 auto 14px;
-    font-size: 2.1rem;
-    line-height: 1;
-    border-radius: 50%;
-    background: var(--grad-accent);
-    color: #03222e;
-    box-shadow: 0 10px 24px rgba(79, 172, 254, .38), inset 0 0 0 4px rgba(255, 255, 255, .82);
-    position: relative;
-    transition: transform var(--t);
-}
-
-.contact-card:hover .avatar {
-    transform: translateY(-3px) scale(1.05);
-}
-
 .contact-card h3 {
     font-size: 1.16rem;
     color: var(--brand-700);
-}
-
-.contact-card .role {
-    font-size: .88rem;
-    font-weight: 700;
-    color: var(--accent-deep);
-    margin: 3px 0 16px;
-    letter-spacing: .02em;
+    margin-bottom: 18px;
 }
 
 .qr-frame {
@@ -2747,10 +2720,6 @@ body.ide-page::after {
     box-shadow: var(--sh-3), var(--glass-hi);
 }
 
-.contact-card .avatar {
-    box-shadow: 0 10px 24px rgba(79, 172, 254, .38), inset 0 0 0 4px rgba(255, 255, 255, .85);
-}
-
 .qr-frame {
     background: rgba(255, 255, 255, .5);
     border-color: rgba(255, 255, 255, .85);
@@ -3548,12 +3517,7 @@ html[data-theme="dark"] .topbar-inner {
 }
 
 html[data-theme="dark"] .topbar-inner::before {
-    background: linear-gradient(155deg,
-        rgba(255, 255, 255, .5) 0%,
-        rgba(130, 200, 255, .3) 26%,
-        rgba(255, 255, 255, .08) 48%,
-        rgba(255, 195, 140, .24) 72%,
-        rgba(255, 255, 255, .42) 100%);
+    display: none;
 }
 
 html[data-theme="dark"] .topbar.is-stuck .topbar-inner {
@@ -3596,13 +3560,16 @@ html[data-theme="dark"] .nav-toggle span {
     background: #eaf4ff;
 }
 
-html[data-theme="dark"] .nav {
-    background:
-        linear-gradient(180deg, rgba(255, 255, 255, .14), rgba(255, 255, 255, .05)),
-        rgba(12, 22, 34, .8);
-    box-shadow:
-        0 22px 54px rgba(0, 0, 0, .5),
-        inset 0 1px 0 rgba(255, 255, 255, .24);
+/* 深色下拉菜单背景只在窄屏生效，宽屏菜单保持透明 */
+@media (max-width: 900px) {
+    html[data-theme="dark"] .nav {
+        background:
+            linear-gradient(180deg, rgba(255, 255, 255, .14), rgba(255, 255, 255, .05)),
+            rgba(12, 22, 34, .8);
+        box-shadow:
+            0 22px 54px rgba(0, 0, 0, .5),
+            inset 0 1px 0 rgba(255, 255, 255, .24);
+    }
 }
 
 /* 日夜开关转暗 */
@@ -3705,7 +3672,7 @@ html[data-theme="dark"] .badge-silver { color: #d7e3ec; }
 html[data-theme="dark"] .nav-link,
 html[data-theme="dark"] .nav-link:hover,
 html[data-theme="dark"] .nav-link.is-active {
-    color: #eaf4ff;
+    color: rgba(220, 235, 245, .75);
 }
 
 /* 窄屏：开关按钮移到汉堡键之前，菜单项悬停反馈转暗 */
@@ -3804,5 +3771,187 @@ html[data-theme="dark"] .link-card::before {
     html[data-theme="dark"] body {
         background: #fff;
         color: #000;
+    }
+}
+
+/* =========================================================
+   33. 网站更新日志页（website_logs.html）
+   ========================================================= */
+
+/* 33.1 玻璃时间轴 */
+.logs {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(18px, 2.6vw, 28px);
+}
+
+.log-entry {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    padding: clamp(20px, 3vw, 30px) clamp(22px, 3.2vw, 34px);
+    box-shadow: var(--sh-2), var(--glass-hi);
+    -webkit-backdrop-filter: saturate(170%) blur(20px);
+    backdrop-filter: saturate(170%) blur(20px);
+    transition: transform var(--t), box-shadow var(--t), border-color var(--t);
+}
+
+.log-entry:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, .95);
+    box-shadow: var(--sh-3), var(--glass-hi);
+}
+
+.log-head {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    margin-bottom: 14px;
+}
+
+.log-date {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: .84rem;
+    font-weight: 800;
+    letter-spacing: .05em;
+    color: var(--accent-deep);
+    background: linear-gradient(135deg, rgba(79, 172, 254, .16), rgba(0, 242, 254, .1));
+    border: 1px solid rgba(79, 172, 254, .3);
+    border-radius: var(--pill);
+    padding: 4px 14px;
+    white-space: nowrap;
+}
+
+.log-head h3 {
+    font-size: 1.2rem;
+    color: var(--brand-700);
+    margin: 0;
+}
+
+.log-entry ul {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.log-entry li {
+    position: relative;
+    padding-left: 22px;
+    font-size: .98rem;
+    color: var(--ink-2);
+    line-height: 1.75;
+}
+
+.log-entry li::before {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: .72em;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--grad-accent);
+    box-shadow: 0 0 0 3px rgba(79, 172, 254, .18);
+}
+
+.log-entry strong {
+    color: var(--brand-800);
+    font-weight: 700;
+}
+
+.log-entry code {
+    font-family: var(--font-mono);
+    font-size: .88em;
+    padding: 2px 8px;
+    border-radius: 8px;
+    background: rgba(79, 172, 254, .12);
+    border: 1px solid rgba(79, 172, 254, .22);
+    color: var(--accent-deep);
+}
+
+/* 33.2 页脚底部：日志入口（全站） */
+.footer-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer-log-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: .82rem;
+    font-weight: 600;
+    letter-spacing: .04em;
+    color: var(--accent-deep);
+    padding: 3px 14px;
+    border-radius: var(--pill);
+    border: 1px solid transparent;
+    transition: background var(--t-fast), border-color var(--t-fast),
+                color var(--t-fast), transform var(--t-fast);
+}
+
+.footer-log-link::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--grad-accent);
+    box-shadow: 0 0 0 2.5px rgba(79, 172, 254, .18);
+}
+
+.footer-log-link:hover {
+    color: var(--brand-800);
+    background: rgba(255, 255, 255, .55);
+    border-color: rgba(255, 255, 255, .85);
+    transform: translateY(-1px);
+}
+
+.footer-log-link.is-current {
+    color: var(--brand-800);
+    background: rgba(255, 255, 255, .5);
+    border-color: rgba(255, 255, 255, .8);
+    cursor: default;
+}
+
+/* 33.3 黑夜模式适配 */
+html[data-theme="dark"] .log-date {
+    color: #9fdcff;
+    background: linear-gradient(135deg, rgba(79, 172, 254, .2), rgba(0, 242, 254, .1));
+    border-color: rgba(126, 200, 255, .3);
+}
+
+html[data-theme="dark"] .log-entry code {
+    color: #9fdcff;
+    background: rgba(79, 172, 254, .16);
+    border-color: rgba(126, 200, 255, .28);
+}
+
+html[data-theme="dark"] .footer-log-link,
+html[data-theme="dark"] .footer-log-link.is-current {
+    color: #9fdcff;
+    background: rgba(255, 255, 255, .08);
+    border-color: rgba(255, 255, 255, .22);
+}
+
+html[data-theme="dark"] .footer-log-link:hover {
+    color: #d8efff;
+    background: rgba(255, 255, 255, .16);
+    border-color: rgba(255, 255, 255, .35);
+}
+
+/* 33.4 窄屏 */
+@media (max-width: 620px) {
+    .log-head h3 {
+        font-size: 1.08rem;
+    }
+
+    .log-entry li {
+        font-size: .93rem;
     }
 }

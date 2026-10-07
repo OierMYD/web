@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>小游戏 | 廿四信息社</title>
+    <meta name="description" content="廿四信息社小游戏合集" />
+    <link rel="icon" href="logo.jpg" type="image/png" />
+    <link rel="stylesheet" href="theme.css" />
+    <style>
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .game-card {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .game-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .game-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+        }
+
+        .game-card p {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .game-view {
+            display: none;
+            margin-top: 40px;
+        }
+
+        .game-view.active {
+            display: block;
+        }
+
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .game-header h3 {
+            font-size: 1.6rem;
+        }
+
+        .game-controls {
+            display: flex;
+            gap: 12px;
+        }
+
+        .score-display {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--accent-deep);
+        }
+
+        /* 2048 */
+        .game-2048 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            max-width: 400px;
+            margin: 0 auto;
+            aspect-ratio: 1;
+        }
+
+        .tile-2048 {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            transition: all 0.15s ease;
+        }
+
+        .tile-2048[data-value="2"] { background: rgba(238, 228, 218, 0.8); color: #776e65; }
+        .tile-2048[data-value="4"] { background: rgba(237, 224, 200, 0.8); color: #776e65; }
+        .tile-2048[data-value="8"] { background: rgba(242, 177, 121, 0.9); color: #f9f6f2; }
+        .tile-2048[data-value="16"] { background: rgba(245, 149, 99, 0.9); color: #f9f6f2; }
+        .tile-2048[data-value="32"] { background: rgba(246, 124, 95, 0.9); color: #f9f6f2; }
+        .tile-2048[data-value="64"] { background: rgba(246, 94, 59, 0.9); color: #f9f6f2; }
+        .tile-2048[data-value="128"] { background: rgba(237, 207, 114, 0.9); color: #f9f6f2; font-size: 1.8rem; }
+        .tile-2048[data-value="256"] { background: rgba(237, 204, 97, 0.9); color: #f9f6f2; font-size: 1.8rem; }
+        .tile-2048[data-value="512"] { background: rgba(237, 200, 80, 0.9); color: #f9f6f2; font-size: 1.8rem; }
+        .tile-2048[data-value="1024"] { background: rgba(237, 197, 63, 0.9); color: #f9f6f2; font-size: 1.5rem; }
+        .tile-2048[data-value="2048"] { background: rgba(237, 194, 46, 0.9); color: #f9f6f2; font-size: 1.5rem; }
+
+        /* Flappy Bird */
+        .game-flappy {
+            position: relative;
+            width: 400px;
+            height: 500px;
+            margin: 0 auto;
+            background: linear-gradient(180deg, #87CEEB 0%, #E0F6FF 100%);
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .bird {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: #FFD700;
+            border-radius: 50%;
+            left: 80px;
+            transition: transform 0.1s;
+        }
+
+        .pipe {
+            position: absolute;
+            width: 60px;
+            background: #228B22;
+            border: 3px solid #006400;
+        }
+
+        .pipe-top {
+            top: 0;
+            border-bottom: none;
+        }
+
+        .pipe-bottom {
+            bottom: 0;
+            border-top: none;
+        }
+
+        /* 记忆翻牌 */
+        .game-memory {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .memory-card {
+            aspect-ratio: 1;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .memory-card.flipped {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotateY(180deg);
+        }
+
+        .memory-card.matched {
+            background: rgba(100, 255, 100, 0.3);
+            cursor: default;
+        }
+
+        /* 打地鼠 */
+        .game-whack {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .hole {
+            aspect-ratio: 1;
+            background: rgba(139, 69, 19, 0.3);
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .mole {
+            position: absolute;
+            width: 80%;
+            height: 80%;
+            left: 10%;
+            bottom: -100%;
+            background: #8B4513;
+            border-radius: 50% 50% 0 0;
+            transition: bottom 0.2s ease;
+        }
+
+        .hole.active .mole {
+            bottom: 10%;
+        }
+
+        .hole.hit .mole {
+            background: #FF6347;
+        }
+
+        @media (max-width: 600px) {
+            .game-2048,
+            .game-memory,
+            .game-whack {
+                max-width: 100%;
+            }
+
+            .game-flappy {
+                width: 100%;
+                max-width: 400px;
+            }
+
+            .tile-2048 {
+                font-size: 1.5rem;
+            }
+
+            .memory-card {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <a class="skip-link" href="#main">跳到主要内容</a>
+    <div class="progress" aria-hidden="true"></div>
+
+    <!-- ===== 顶部导航 ===== -->
+    <header class="topbar">
+        <div class="topbar-inner">
+            <a class="brand" href="index.html" aria-label="廿四信息社首页">
+                <span class="brand-mark"><img src="logo.jpg" alt=""></span>
+                <span class="brand-text">
+                    <span class="brand-title">廿四信息社</span>
+                    <span class="brand-sub">IT Club of Dalian No.24 High School</span>
+                </span>
+            </a>
+
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="siteNav" aria-label="展开导航菜单">
+                <span></span><span></span><span></span>
+            </button>
+
+            <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false" aria-label="切换黑夜模式" title="切换白天/黑夜模式">
+                <svg class="tt-ico tt-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="4.2"></circle>
+                    <path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M18.7 5.3L17 7M7 17l-1.7 1.7"></path>
+                </svg>
+                <svg class="tt-ico tt-moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M20.6 14.2A8.6 8.6 0 0 1 9.8 3.4a8.6 8.6 0 1 0 10.8 10.8Z"></path>
+                </svg>
+                <span class="tt-knob" aria-hidden="true"></span>
+            </button>
+
+            <nav class="nav" id="siteNav" aria-label="主导航">
+                <ul class="nav-list">
+                    <li><a class="nav-link" href="index.html">首页<small>Home</small></a></li>
+                    <li><a class="nav-link" href="info.html">关于我们<small>About Us</small></a></li>
+                    <li><a class="nav-link" href="act.html">社团活动<small>Activities</small></a></li>
+                    <li><a class="nav-link" href="honors.html">竞赛荣誉<small>Honors</small></a></li>
+                    <li><a class="nav-link" href="contact.html">加入我们<small>Join Us</small></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+
+        <!-- ===== 横幅 ===== -->
+        <section class="page-hero">
+            <span class="breadcrumb"><a href="index.html">首页</a> / 小游戏</span>
+            <h2>小游戏</h2>
+        </section>
+
+        <div class="content">
+
+            <!-- 游戏选择 -->
+            <div id="gameList" class="game-grid">
+                <div class="card game-card" data-game="2048">
+                    <h3>2048</h3>
+                    <p>滑动合并数字，挑战最高分</p>
+                </div>
+                <div class="card game-card" data-game="flappy">
+                    <h3>Flappy Bird</h3>
+                    <p>点击屏幕让小鸟飞翔</p>
+                </div>
+                <div class="card game-card" data-game="memory">
+                    <h3>记忆翻牌</h3>
+                    <p>找出所有配对的卡片</p>
+                </div>
+                <div class="card game-card" data-game="whack">
+                    <h3>打地鼠</h3>
+                    <p>快速点击冒出的地鼠</p>
+                </div>
+            </div>
+
+            <!-- 2048 游戏 -->
+            <div id="game2048" class="game-view">
+                <div class="game-header">
+                    <h3>2048</h3>
+                    <div class="game-controls">
+                        <span class="score-display">得分: <span id="score2048">0</span></span>
+                        <button class="btn btn-outline" onclick="init2048()">重新开始</button>
+                        <button class="btn btn-ghost" onclick="backToList()">返回</button>
+                    </div>
+                </div>
+                <div class="game-2048" id="board2048"></div>
+            </div>
+
+            <!-- Flappy Bird -->
+            <div id="gameFlappy" class="game-view">
+                <div class="game-header">
+                    <h3>Flappy Bird</h3>
+                    <div class="game-controls">
+                        <span class="score-display">得分: <span id="scoreFlappy">0</span></span>
+                        <button class="btn btn-outline" onclick="initFlappy()">重新开始</button>
+                        <button class="btn btn-ghost" onclick="backToList()">返回</button>
+                    </div>
+                </div>
+                <div class="game-flappy" id="flappyCanvas">
+                    <div class="bird" id="bird"></div>
+                </div>
+            </div>
+
+            <!-- 记忆翻牌 -->
+            <div id="gameMemory" class="game-view">
+                <div class="game-header">
+                    <h3>记忆翻牌</h3>
+                    <div class="game-controls">
+                        <span class="score-display">步数: <span id="scoreMemory">0</span></span>
+                        <button class="btn btn-outline" onclick="initMemory()">重新开始</button>
+                        <button class="btn btn-ghost" onclick="backToList()">返回</button>
+                    </div>
+                </div>
+                <div class="game-memory" id="boardMemory"></div>
+            </div>
+
+            <!-- 打地鼠 -->
+            <div id="gameWhack" class="game-view">
+                <div class="game-header">
+                    <h3>打地鼠</h3>
+                    <div class="game-controls">
+                        <span class="score-display">得分: <span id="scoreWhack">0</span></span>
+                        <button class="btn btn-outline" onclick="initWhack()">开始游戏</button>
+                        <button class="btn btn-ghost" onclick="backToList()">返回</button>
+                    </div>
+                </div>
+                <div class="game-whack" id="boardWhack"></div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- ===== 页脚 ===== -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <span class="brand-mark"><img src="logo.jpg" alt=""></span>
+                <span>
+                    <strong>廿四信息社</strong>
+                    <small>IT CLUB · DALIAN NO.24 HS</small>
+                </span>
+            </div>
+            <nav class="footer-nav" aria-label="页脚导航">
+                <a href="index.html">首页</a>
+                <a href="info.html">关于我们</a>
+                <a href="act.html">社团活动</a>
+                <a href="honors.html">竞赛荣誉</a>
+                <a href="ide.html">在线 IDE</a>
+                <a href="contact.html">加入我们</a>
+            </nav>
+        </div>
+        <div class="footer-bottom">
+            <a class="footer-log-link" href="website_logs.html">网站更新日志</a>
+            &copy; 2026 廿四信息社. All Rights Reserved.
+        </div>
+    </footer>
+
+    <button class="to-top" id="toTop" type="button" aria-label="回到顶部">↑</button>
+    <script src="theme.js"></script>
+
+    <script>
+        // 游戏切换
+        document.querySelectorAll('.game-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const game = card.dataset.game;
+                document.getElementById('gameList').style.display = 'none';
+                document.getElementById('game' + game.charAt(0).toUpperCase() + game.slice(1)).classList.add('active');
+                
+                if (game === '2048') init2048();
+                else if (game === 'flappy') initFlappy();
+                else if (game === 'memory') initMemory();
+                else if (game === 'whack') initWhack();
+            });
+        });
+
+        function backToList() {
+            document.querySelectorAll('.game-view').forEach(v => v.classList.remove('active'));
+            document.getElementById('gameList').style.display = 'grid';
+            if (flappyInterval) clearInterval(flappyInterval);
+            if (whackInterval) clearInterval(whackInterval);
+        }
+
+        // ===== 2048 =====
+        let board2048 = [];
+        let score2048 = 0;
+
+        function init2048() {
+            board2048 = Array(16).fill(0);
+            score2048 = 0;
+            document.getElementById('score2048').textContent = '0';
+            addRandomTile();
+            addRandomTile();
+            render2048();
+        }
+
+        function addRandomTile() {
+            const empty = board2048.map((v, i) => v === 0 ? i : -1).filter(i => i !== -1);
+            if (empty.length === 0) return;
+            const idx = empty[Math.floor(Math.random() * empty.length)];
+            board2048[idx] = Math.random() < 0.9 ? 2 : 4;
+        }
+
+        function render2048() {
+            const board = document.getElementById('board2048');
+            board.innerHTML = '';
+            board2048.forEach(val => {
+                const tile = document.createElement('div');
+                tile.className = 'tile-2048';
+                if (val > 0) {
+                    tile.dataset.value = val;
+                    tile.textContent = val;
+                }
+                board.appendChild(tile);
+            });
+        }
+
+        function move2048(dir) {
+            const old = [...board2048];
+            let moved = false;
+
+            for (let i = 0; i < 4; i++) {
+                let line = [];
+                for (let j = 0; j < 4; j++) {
+                    const idx = dir === 'left' ? i * 4 + j :
+                               dir === 'right' ? i * 4 + (3 - j) :
+                               dir === 'up' ? j * 4 + i :
+                               (3 - j) * 4 + i;
+                    line.push(board2048[idx]);
+                }
+
+                const filtered = line.filter(v => v > 0);
+                for (let j = 0; j < filtered.length - 1; j++) {
+                    if (filtered[j] === filtered[j + 1]) {
+                        filtered[j] *= 2;
+                        score2048 += filtered[j];
+                        filtered.splice(j + 1, 1);
+                    }
+                }
+
+                while (filtered.length < 4) filtered.push(0);
+
+                for (let j = 0; j < 4; j++) {
+                    const idx = dir === 'left' ? i * 4 + j :
+                               dir === 'right' ? i * 4 + (3 - j) :
+                               dir === 'up' ? j * 4 + i :
+                               (3 - j) * 4 + i;
+                    board2048[idx] = filtered[j];
+                }
+            }
+
+            moved = board2048.some((v, i) => v !== old[i]);
+            if (moved) {
+                addRandomTile();
+                document.getElementById('score2048').textContent = score2048;
+                render2048();
+            }
+        }
+
+        document.addEventListener('keydown', e => {
+            if (!document.getElementById('game2048').classList.contains('active')) return;
+            if (e.key === 'ArrowLeft') { e.preventDefault(); move2048('left'); }
+            else if (e.key === 'ArrowRight') { e.preventDefault(); move2048('right'); }
+            else if (e.key === 'ArrowUp') { e.preventDefault(); move2048('up'); }
+            else if (e.key === 'ArrowDown') { e.preventDefault(); move2048('down'); }
+        });
+
+        // ===== Flappy Bird =====
+        let birdY = 200, birdVel = 0;
+        let pipes = [];
+        let scoreFlappy = 0;
+        let flappyInterval;
+        let gameStarted = false;
+
+        function initFlappy() {
+            birdY = 200;
+            birdVel = 0;
+            pipes = [];
+            scoreFlappy = 0;
+            gameStarted = false;
+            document.getElementById('scoreFlappy').textContent = '0';
+            document.getElementById('bird').style.transform = 'translateY(200px)';
+            
+            const canvas = document.getElementById('flappyCanvas');
+            canvas.querySelectorAll('.pipe').forEach(p => p.remove());
+            
+            if (flappyInterval) clearInterval(flappyInterval);
+        }
+
+        document.getElementById('flappyCanvas').addEventListener('click', () => {
+            if (!gameStarted) {
+                gameStarted = true;
+                flappyInterval = setInterval(updateFlappy, 20);
+            }
+            birdVel = -8;
+        });
+
+        function updateFlappy() {
+            birdVel += 0.5;
+            birdY += birdVel;
+            
+            if (birdY < 0 || birdY > 460) {
+                clearInterval(flappyInterval);
+                gameStarted = false;
+                return;
+            }
+
+            document.getElementById('bird').style.transform = `translateY(${birdY}px)`;
+
+            if (pipes.length === 0 || pipes[pipes.length - 1].x < 200) {
+                const gap = 150;
+                const topHeight = 100 + Math.random() * 200;
+                pipes.push({ x: 400, top: topHeight, bottom: topHeight + gap, scored: false });
+                
+                const canvas = document.getElementById('flappyCanvas');
+                const pipeTop = document.createElement('div');
+                pipeTop.className = 'pipe pipe-top';
+                pipeTop.style.height = topHeight + 'px';
+                pipeTop.style.left = '400px';
+                canvas.appendChild(pipeTop);
+                
+                const pipeBottom = document.createElement('div');
+                pipeBottom.className = 'pipe pipe-bottom';
+                pipeBottom.style.height = (500 - topHeight - gap) + 'px';
+                pipeBottom.style.left = '400px';
+                canvas.appendChild(pipeBottom);
+            }
+
+            const canvas = document.getElementById('flappyCanvas');
+            const pipeEls = canvas.querySelectorAll('.pipe');
+            
+            pipes.forEach((pipe, i) => {
+                pipe.x -= 3;
+                pipeEls[i * 2].style.left = pipe.x + 'px';
+                pipeEls[i * 2 + 1].style.left = pipe.x + 'px';
+
+                if (pipe.x < 80 && pipe.x > 20 && !pipe.scored) {
+                    scoreFlappy++;
+                    pipe.scored = true;
+                    document.getElementById('scoreFlappy').textContent = scoreFlappy;
+                }
+
+                if (pipe.x < -60) {
+                    pipeEls[i * 2].remove();
+                    pipeEls[i * 2 + 1].remove();
+                }
+
+                if (pipe.x < 120 && pipe.x > 20) {
+                    if (birdY < pipe.top || birdY + 40 > pipe.bottom) {
+                        clearInterval(flappyInterval);
+                        gameStarted = false;
+                    }
+                }
+            });
+
+            pipes = pipes.filter(p => p.x > -60);
+        }
+
+        // ===== 记忆翻牌 =====
+        const emojis = ['🎮', '🎯', '🎨', '🎭', '🎪', '🎸', '🎺', '🎻'];
+        let memoryCards = [];
+        let flippedCards = [];
+        let matchedCards = [];
+        let moves = 0;
+
+        function initMemory() {
+            memoryCards = [...emojis, ...emojis].sort(() => Math.random() - 0.5);
+            flippedCards = [];
+            matchedCards = [];
+            moves = 0;
+            document.getElementById('scoreMemory').textContent = '0';
+            
+            const board = document.getElementById('boardMemory');
+            board.innerHTML = '';
+            
+            memoryCards.forEach((emoji, i) => {
+                const card = document.createElement('div');
+                card.className = 'memory-card';
+                card.dataset.index = i;
+                card.dataset.emoji = emoji;
+                card.addEventListener('click', () => flipCard(card));
+                board.appendChild(card);
+            });
+        }
+
+        function flipCard(card) {
+            if (flippedCards.length === 2 || card.classList.contains('flipped') || card.classList.contains('matched')) return;
+            
+            card.classList.add('flipped');
+            card.textContent = card.dataset.emoji;
+            flippedCards.push(card);
+
+            if (flippedCards.length === 2) {
+                moves++;
+                document.getElementById('scoreMemory').textContent = moves;
+                
+                if (flippedCards[0].dataset.emoji === flippedCards[1].dataset.emoji) {
+                    flippedCards.forEach(c => c.classList.add('matched'));
+                    flippedCards = [];
+                    matchedCards.push(...flippedCards);
+                    
+                    if (matchedCards.length === memoryCards.length) {
+                        setTimeout(() => alert('恭喜完成！共用 ' + moves + ' 步'), 300);
+                    }
+                } else {
+                    setTimeout(() => {
+                        flippedCards.forEach(c => {
+                            c.classList.remove('flipped');
+                            c.textContent = '';
+                        });
+                        flippedCards = [];
+                    }, 1000);
+                }
+            }
+        }
+
+        // ===== 打地鼠 =====
+        let scoreWhack = 0;
+        let whackInterval;
+        let whackActive = false;
+
+        function initWhack() {
+            scoreWhack = 0;
+            whackActive = true;
+            document.getElementById('scoreWhack').textContent = '0';
+            
+            const board = document.getElementById('boardWhack');
+            board.innerHTML = '';
+            
+            for (let i = 0; i < 9; i++) {
+                const hole = document.createElement('div');
+                hole.className = 'hole';
+                hole.innerHTML = '<div class="mole"></div>';
+                hole.addEventListener('click', () => whackMole(hole));
+                board.appendChild(hole);
+            }
+
+            if (whackInterval) clearInterval(whackInterval);
+            whackInterval = setInterval(showMole, 1000);
+        }
+
+        function showMole() {
+            if (!whackActive) return;
+            
+            const holes = document.querySelectorAll('.hole');
+            holes.forEach(h => h.classList.remove('active', 'hit'));
+            
+            const idx = Math.floor(Math.random() * 9);
+            holes[idx].classList.add('active');
+            
+            setTimeout(() => {
+                holes[idx].classList.remove('active');
+            }, 800);
+        }
+
+        function whackMole(hole) {
+            if (!hole.classList.contains('active')) return;
+            
+            hole.classList.add('hit');
+            scoreWhack++;
+            document.getElementById('scoreWhack').textContent = scoreWhack;
+            
+            setTimeout(() => {
+                hole.classList.remove('active', 'hit');
+            }, 200);
+        }
+    </script>
+
+</body>
+</html>
